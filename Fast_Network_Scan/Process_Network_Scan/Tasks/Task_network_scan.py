@@ -1,6 +1,6 @@
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
-from nmap import nmap
+import nmap
 
 dev_var = Variables()
 dev_var.add('network', var_type='String')
