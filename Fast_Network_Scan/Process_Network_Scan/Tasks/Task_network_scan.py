@@ -12,6 +12,9 @@ nm.scan(hosts=context['network'], arguments='-n -sP')
 hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 i = 0
 for host, status in hosts_list:
+    if i == 0
+    	context['hosts'] = dict()
+        context['hosts'][i] = dict()
     context['hosts'][i]['host'] = host
     context['hosts'][i]['status'] = status
     i += 2
