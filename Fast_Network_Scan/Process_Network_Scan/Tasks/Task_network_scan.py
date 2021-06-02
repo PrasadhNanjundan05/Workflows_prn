@@ -10,9 +10,12 @@ context = Variables.task_call(dev_var)
 nm = nmap.PortScanner()
 nm.scan(hosts=context['network'], arguments='-n -sP')
 hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
-
-for host, status in hosts_list:
-    context[host] = status
+i=0
+for host, status, state in hosts_list:
+    context['hosts'][i]['host'] = host
+    context['hosts'][i]['status'] = status
+    context['hosts'][i]['state'] = state
+    i += 1
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
 print(ret)
