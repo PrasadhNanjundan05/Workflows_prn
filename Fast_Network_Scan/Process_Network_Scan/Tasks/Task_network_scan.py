@@ -17,7 +17,7 @@ for host, status in hosts_list:
       context['hosts'][i] = dict()
     context['hosts'][i]['host'] = host
     context['hosts'][i]['status'] = status
-    i += 2
+    i += 1
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
 print(ret)
