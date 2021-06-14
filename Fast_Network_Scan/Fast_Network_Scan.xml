@@ -15,6 +15,16 @@
       <displayName>network_scan</displayName>
     </task>
   </process>
+  <process name="Process/workflows/Fast_Network_Scan/Process_Review_and_Launch_Deep_Scan">
+    <displayName>Review and Launch Deep Scan</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_launch_deep_scan.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Fast_Network_Scan/Process_Review_and_Launch_Deep_Scan/Tasks</processPath>
+      <displayName>launch_deep_scan</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description/>
