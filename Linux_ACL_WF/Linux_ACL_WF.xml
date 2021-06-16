@@ -38,7 +38,7 @@
     </task>
   </process>
   <process name="Process/workflows/Linux_ACL_WF/Process_New_process">
-    <displayName>New process</displayName>
+    <displayName>New service</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
