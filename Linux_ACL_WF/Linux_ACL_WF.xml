@@ -3,7 +3,7 @@
   <example/>
   <process name="Process/workflows/Linux_ACL_WF/Process_Add_ACL">
     <displayName>Add ACL</displayName>
-    <type>CREATE</type>
+    <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Ensure_ACL_does_not_exist_in_the_ME.py">
@@ -21,7 +21,7 @@
   </process>
   <process name="Process/workflows/Linux_ACL_WF/Process_Delete_ACL">
     <displayName>Delete ACL</displayName>
-    <type>DELETE</type>
+    <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
     <task name="Task_Ensure_ACL_exists_in_the_ME.py">
@@ -36,6 +36,22 @@
       <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Delete_ACL/Tasks</processPath>
       <displayName>Ensure ACL does not exist in the ME</displayName>
     </task>
+  </process>
+  <process name="Process/workflows/Linux_ACL_WF/Process_New_process">
+    <displayName>New process</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Instanciate_Service.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_New_process/Tasks</processPath>
+      <displayName>Instanciate Service</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/Linux_ACL_WF/Process_Delete_process">
+    <displayName>Delete process</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
   </process>
   <information>
     <icon/>
