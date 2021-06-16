@@ -48,7 +48,7 @@
     </task>
   </process>
   <process name="Process/workflows/Linux_ACL_WF/Process_Delete_process">
-    <displayName>Delete process</displayName>
+    <displayName>Delete service</displayName>
     <type>DELETE</type>
     <visibility>5</visibility>
     <allowSchedule/>
