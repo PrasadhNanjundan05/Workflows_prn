@@ -1,9 +1,45 @@
 <ObjectDefinition>
   <variables frozen="0"/>
   <example/>
+  <process name="Process/workflows/Linux_ACL_WF/Process_Add_ACL">
+    <displayName>Add ACL</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Ensure_ACL_does_not_exist_in_the_ME.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Add_ACL/Tasks</processPath>
+      <displayName>Ensure ACL does not exist in the ME</displayName>
+    </task>
+    <task name="Task_Add_ACL_in_the_ME.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Add_ACL/Tasks</processPath>
+      <displayName>Add ACL in the ME</displayName>
+    </task>
+    <task name="Task_Ensure_ACL_exists_in_the_ME.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Add_ACL/Tasks</processPath>
+      <displayName>Ensure ACL exists in the ME</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/Linux_ACL_WF/Process_Delete_ACL">
+    <displayName>Delete ACL</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Ensure_ACL_exists_in_the_ME.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Delete_ACL/Tasks</processPath>
+      <displayName>Ensure ACL exists in the ME</displayName>
+    </task>
+    <task name="Task_Delete_ACL.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Delete_ACL/Tasks</processPath>
+      <displayName>Delete ACL</displayName>
+    </task>
+    <task name="Task_Ensure_ACL_does_not_exist_in_the_ME.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Linux_ACL_WF/Process_Delete_ACL/Tasks</processPath>
+      <displayName>Ensure ACL does not exist in the ME</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
-    <description></description>
+    <description/>
     <displayField>service_id</displayField>
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
