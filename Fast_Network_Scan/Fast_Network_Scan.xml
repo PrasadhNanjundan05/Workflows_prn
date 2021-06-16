@@ -11,6 +11,7 @@
         <sections> Select Hosts for Deep Scan</sections>
       </sections>
     </variable>
+    <variable displayName="SNMP Community Name" name="params.snmp_communities.0.name" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="3" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <process name="Process/workflows/Fast_Network_Scan/Process_Network_Scan">
