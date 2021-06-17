@@ -33,6 +33,7 @@ for line in process.stdout:
     if result:
         context['hosts'][i] = dict()
         context['hosts'][i]['ip_address'] = result.group(1)
+        context['hosts'][i]['selected'] = False
         update_message = True
         i += 1 
     else:
