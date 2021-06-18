@@ -20,6 +20,7 @@ i = 0
 for host in hosts:
     selected = bool(host['selected'])
     if selected:
+        selected_hosts[i] = dict()
         selected_hosts[i]['ip_address'] = host['ip_address']
         i += 1
 
