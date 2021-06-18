@@ -27,7 +27,7 @@ for host in hosts:
 hosts_per_wf = dict()
 j = 0
 for host in selected_hosts:
-    hosts_per_wf[j] = dict();
+    hosts_per_wf[j] = dict()
     hosts_per_wf[j]['ip_address'] = host['ip_address']
     j += 1
     if j == 2:
