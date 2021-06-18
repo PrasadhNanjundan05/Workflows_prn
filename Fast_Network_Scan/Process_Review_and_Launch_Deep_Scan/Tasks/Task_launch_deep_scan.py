@@ -24,21 +24,20 @@ for host in hosts:
         selected_hosts[i]['ip_address'] = host['ip_address']
         i += 1
         
-hosts_per_wf = dict()
-j = 0
+hosts_per_wf = []
+
 for key, value in selected_hosts.items():
-    hosts_per_wf[j] = dict()
-    hosts_per_wf[j]['ip_address'] = value['ip_address']
-    j += 1
-    if j == 2:
+    hosts_per = dict()
+    hosts_per['ip_address'] = value['ip_address']
+    hosts_per_wf.append(hosts_per)
+    if len(hosts_per_wf) == 2:
         data = dict()
         data['hosts'] = dict()
-        data['hosts'] = hosts_per_wf.items()
+        data['hosts'] = hosts_per_wf
         data['snmp_communities'] = communities
         util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(data), context['PROCESSINSTANCEID'])
         Orchestration.execute_service('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Scan', data)
-        hosts_per_wf = dict()
-        j = 0
+        hosts_per_wf = []
     
 
 
