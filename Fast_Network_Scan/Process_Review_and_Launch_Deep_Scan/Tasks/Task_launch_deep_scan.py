@@ -27,18 +27,7 @@ for host in hosts:
 hosts_per_wf = dict()
 j = 0
 for host in selected_hosts:
-    hosts_per_wf[j] = dict()
-    hosts_per_wf[j]['ip_address'] = 'test'
-    j += 1
-    if j == 2:
-        data = dict()
-        data['hosts'] = dict()
-        data['hosts'] = hosts_per_wf
-        data['snmp_communities'] = communities
-        util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(data), context['PROCESSINSTANCEID'])
-        #Orchestration.execute_service('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Scan', data)
-        hosts_per_wf = dict()
-        j = 0
+    util.log_to_process_file(context['SERVICEINSTANCEID'], host, context['PROCESSINSTANCEID'])
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
