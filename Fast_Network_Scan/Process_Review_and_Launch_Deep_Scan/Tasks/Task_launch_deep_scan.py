@@ -26,11 +26,12 @@ for host in hosts:
         
 hosts_per_wf = dict()
 j = 0
-for host in selected_hosts.items():
+for host in selected_hosts:
+    util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(host), context['PROCESSINSTANCEID'])
     hosts_per_wf[j] = dict()
     hosts_per_wf[j]['ip_address'] = host['ip_address']
     j += 1
-    if j == 2:
+    if j > 2:
         data = dict()
         data['hosts'] = dict()
         data['hosts'] = hosts_per_wf
