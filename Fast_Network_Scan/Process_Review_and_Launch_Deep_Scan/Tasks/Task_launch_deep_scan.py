@@ -15,7 +15,7 @@ communities = context['snmp_communities']
 
 selected_hosts = dict()
 i = 0
-for key, value in hosts.items():
+for host in hosts:
     selected = bool(value['selected'])
     if selected:
         selected_hosts[i] = value['ip_address']
