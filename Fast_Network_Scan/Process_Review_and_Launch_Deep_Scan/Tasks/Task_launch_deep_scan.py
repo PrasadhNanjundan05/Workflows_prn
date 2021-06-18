@@ -26,8 +26,8 @@ for host in hosts:
         
 hosts_per_wf = dict()
 j = 0
-for host in selected_hosts.items():
-    util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(host), context['PROCESSINSTANCEID'])
+for key, value in selected_hosts.items():
+    util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(value), context['PROCESSINSTANCEID'])
     hosts_per_wf[j] = dict()
     hosts_per_wf[j]['ip_address'] = host['ip_address']
     j += 1
