@@ -5,14 +5,14 @@ from msa_sdk import util
 import json
 
 dev_var = Variables()
-dev_var.add('hosts.0.ip_address', var_type='Ip Address')
-dev_var.add('hosts.0.selected', var_type='Boolean')
+dev_var.add('hostsk.0.ip_address', var_type='Ip Address')
+dev_var.add('hostsk.0.selected', var_type='Boolean')
 dev_var.add('snmp_communities.0.name', var_type='String')
 context = Variables.task_call(dev_var)
 
 Orchestration = Orchestration(context['UBIQUBEID'])
 
-hosts = context['hosts']
+hosts = context['hostsk']
 communities = context['snmp_communities']
 
 selected_hosts = dict()
