@@ -16,9 +16,9 @@ communities = context['snmp_communities']
 selected_hosts = dict()
 i = 0
 for host in hosts:
-    selected = bool(value['selected'])
+    selected = bool(host['selected'])
     if selected:
-        selected_hosts[i] = value['ip_address']
+        selected_hosts[i] = host['ip_address']
         i += 1
 
 hosts_per_wf = dict()
