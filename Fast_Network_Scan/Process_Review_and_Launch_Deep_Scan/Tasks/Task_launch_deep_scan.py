@@ -1,6 +1,8 @@
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.orchestration import Orchestration
+from msa_sdk import util
+import json
 
 dev_var = Variables()
 dev_var.add('hostsk.0.ip_address', var_type='Ip Address')
@@ -18,7 +20,7 @@ i = 0
 for host in hosts:
     selected = bool(host['selected'])
     if selected:
-        selected_hosts[i] = host['ip_address']
+        selected_hosts[i]['ip_address'] = host['ip_address']
         i += 1
 
 hosts_per_wf = dict()
@@ -31,6 +33,7 @@ for host in selected_hosts:
         data['hosts'] = dict()
         data['hosts'] = hosts_per_wf
         data['snmp_communities'] = communities
+        util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(data), context['PROCESSINSTANCEID'])
         Orchestration.execute_service('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Scan', data)
         hosts_per_wf = dict()
         j = 0
