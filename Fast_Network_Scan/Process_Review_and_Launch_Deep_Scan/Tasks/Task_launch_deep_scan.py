@@ -36,7 +36,7 @@ for key, value in selected_hosts.items():
         data['hosts'] = hosts_per_wf
         data['snmp_communities'] = communities
         util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(data), context['PROCESSINSTANCEID'])
-        Orchestration.execute_service('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Scan', data)
+        Orchestration.execute_service('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Network_Scan', data)
         hosts_per_wf = []
     
 
