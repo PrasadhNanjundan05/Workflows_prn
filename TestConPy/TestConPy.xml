@@ -11,6 +11,16 @@
       <displayName>test1</displayName>
     </task>
   </process>
+  <process name="Process/workflows/TestConPy/Process_Rest">
+    <displayName>Rest</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_test_next.py">
+      <processPath>/opt/fmc_repository/Process/workflows/TestConPy/Process_Rest/Tasks</processPath>
+      <displayName>test_next</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description/>
