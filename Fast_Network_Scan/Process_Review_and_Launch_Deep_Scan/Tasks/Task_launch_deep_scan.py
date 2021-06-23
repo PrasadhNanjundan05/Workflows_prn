@@ -22,9 +22,9 @@ for host in hosts:
     selected = bool(host['selected'])
     if selected:
         selected_host = dict()
-        selected_host['ip_address'] = host['ip_address']
+        selected_host = host
         selected_hosts.append(selected_host)
-        
+
 hosts_per_wf = []
 process_ids = dict()
 
@@ -44,7 +44,7 @@ for host in selected_hosts:
             process_ids.update(process_info);
         hosts_per_wf = []
 
-host_list = context['hosts']
+context['hosts'] = selected_hosts 
 
 while bool(process_ids):
     for k, v in list(process_ids.items()):
@@ -57,12 +57,13 @@ while bool(process_ids):
             hosts = list(filter(lambda var: var['name'] == 'hosts', json.loads(Orchestration.content)))
             hosts = list(hosts[0]['value'].values())
             for host in hosts:
-                updated_host = dict()
-                updated_host['ip_address'] = host['ip_address']
-                updated_host['selected'] = True
-                updated_host['vendor'] = host['vendor']
-                updated_host['model'] = host['model']
-                context['hosts'] = list(map(lambda x: updated_host, filter(lambda var: var['ip_address'] == host['ip_address'], host_list)))
+                context['hosts'] = list(filter(lambda i: i['ip_address'] != host['ip_address'], context['hosts']))
+                updated_hosts = dict()
+                updated_hosts['ip_address'] = host['ip_address']
+                updated_hosts['selected'] = True
+                updated_hosts['vendor'] = host['vendor']
+                updated_hosts['model'] = host['model']
+                context['hosts'].append(updated_hosts)
         elif process_status == 'FAIL':
             process_ids.pop(k)
         else:
