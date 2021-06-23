@@ -44,6 +44,8 @@ for host in selected_hosts:
             process_ids.update(process_info);
         hosts_per_wf = []
 
+host_list = context['hosts']
+
 while bool(process_ids):
     for k, v in list(process_ids.items()):
         process_status = Orchestration.get_process_status_by_id(k)
@@ -60,7 +62,7 @@ while bool(process_ids):
                 updated_host['selected'] = True
                 updated_host['vendor'] = host['vendor']
                 updated_host['model'] = host['model']
-                context['hosts'] = list(map(lambda x: updated_host, filter(lambda var: var['ip_address'] == host['ip_address'], context['hosts'])))
+                context['hosts'] = list(map(lambda x: updated_host, filter(lambda var: var['ip_address'] == host['ip_address'], host_list)))
         elif process_status == 'FAIL':
             process_ids.pop(k)
         else:
