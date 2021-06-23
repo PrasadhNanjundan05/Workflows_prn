@@ -56,7 +56,7 @@ while bool(process_ids):
             hosts = list(hosts[0]['value'].values())
             for host in hosts:
                 temp = list(filter(lambda i: i['ip_address'] == host['ip_address'], context['hosts']))
-                temp1 = dict(list[0])
+                temp1 = list[0]
                 real_host = dict()
                 real_host['vendor'] = host['vendor']
                 real_host['model'] = host['model']
