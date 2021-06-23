@@ -60,7 +60,7 @@ while bool(process_ids):
                 real_host['selected'] = True
                 real_host['vendor'] = host['vendor']
                 real_host['model'] = host['model']
-                context['hosts'] = list(map(lambda x: real_host, if x['ip_address'] == host['ip_address'] else None, context['hosts']))
+                context['hosts'] = list(map(lambda x: real_host if x['ip_address'] == host['ip_address'] else None, context['hosts']))
         elif process_status == 'FAIL':
             process_ids.pop(k)
         else:
