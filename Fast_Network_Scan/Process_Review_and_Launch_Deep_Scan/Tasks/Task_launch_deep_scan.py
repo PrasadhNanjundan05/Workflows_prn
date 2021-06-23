@@ -55,14 +55,13 @@ while bool(process_ids):
             hosts = list(filter(lambda var: var['name'] == 'hosts', json.loads(Orchestration.content)))
             hosts = list(hosts[0]['value'].values())
             for host in hosts:
-                context['hosts'] = list(filter(lambda i: i['ip_address'] != host['ip_address'], context['hosts']))
+                temp = list(filter(lambda i: i['ip_address'] == host['ip_address'], context['hosts']))
+                temp1 = dict(list[0])
                 real_host = dict()
-                real_host['ip_address'] = host['ip_address']
-                real_host['selected'] = True
                 real_host['vendor'] = host['vendor']
                 real_host['model'] = host['model']
-                context['hosts'].append(real_host)
-            context['hosts'] = sorted(context['hosts'], key=lambda k: k['ip_address']) 
+                temp1.update(real_host)
+                context['hosts'] = list(map(lambda d: d.update(temp1), context['hosts']))
         elif process_status == 'FAIL':
             process_ids.pop(k)
         else:
