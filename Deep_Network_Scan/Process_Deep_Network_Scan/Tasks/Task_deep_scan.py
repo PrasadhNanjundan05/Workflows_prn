@@ -10,7 +10,8 @@ dev_var.add('snmp_communities.0.name', var_type='String')
 
 context = Variables.task_call(dev_var)
 hosts = context['hosts']
-communities = context['snmp_communities']
+communities = context.get('snmp_communities', {})
+
 i = 0
 context['hosts'] = dict()
 for host in hosts:
