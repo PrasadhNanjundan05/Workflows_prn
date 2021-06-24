@@ -7,7 +7,7 @@
   </variables>
   <example/>
   <process name="Process/workflows/Deep_Network_Scan/Process_Deep_Network_Scan">
-    <displayName>Deep Network Scan</displayName>
+    <displayName>Deep Scan</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
