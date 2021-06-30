@@ -34,7 +34,7 @@ for host in hosts:
     if not snmp_success:
         nm = nmap.PortScanner()
         machine = nm.scan(ipAdd, arguments='-O', sudo=True)
-        if bool(machine['scan']):
+        if bool(machine['scan'][ipAdd]['osmatch']):
             context['hosts'][i] = dict()
             context['hosts'][i]['ip_address'] = ipAdd
             context['hosts'][i]['vendor'] = machine['scan'][ipAdd]['osmatch'][0]['osclass'][0]['vendor']
