@@ -9,6 +9,8 @@ dev_var = Variables()
 dev_var.add('aws_ip', var_type='IP Address')
 dev_var.add('aws_username', var_type='String')
 dev_var.add('aws_password', var_type='String')
+dev_var.add('aws_hostname', var_type='String')
+
 
 context = Variables.task_call(dev_var)
 
@@ -26,6 +28,11 @@ aws_device = Device(customer_id = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).
 aws_device.create()
 output = aws_device.read()
 aws_device_info = json.loads(output)
+
+msa_object  = MSA_API()
+msa_object.action = 'Update Device Hostname'
+msa_object.path   = "/device/v1/{}/hostname/{}".format(aws_device_info['id'], context['aws_hostname'])
+msa_object._call_post()
 
 conf_profile = ConfProfile(profile_id=179)
 conf_profile.read()
