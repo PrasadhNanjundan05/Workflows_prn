@@ -34,6 +34,8 @@ conf_profile.read()
 conf_profile.attachedManagedEntities = [aws_device_info['id']]
 conf_profile.update()
 
+context['device_id'] = aws_device_info['prefix']+aws_device_info['id']
+
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
 print(ret)
