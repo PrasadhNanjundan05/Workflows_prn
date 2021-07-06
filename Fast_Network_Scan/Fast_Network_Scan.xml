@@ -38,6 +38,10 @@
       <processPath>/opt/fmc_repository/Process/workflows/Fast_Network_Scan/Process_AWS_discovery/Tasks</processPath>
       <displayName>Create_AWS_Device</displayName>
     </task>
+    <task name="instances_IMPORT.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Fast_Network_Scan/Process_AWS_discovery/Tasks</processPath>
+      <displayName>Import_AWS_Instances</displayName>
+    </task>
   </process>
   <information>
     <icon/>
