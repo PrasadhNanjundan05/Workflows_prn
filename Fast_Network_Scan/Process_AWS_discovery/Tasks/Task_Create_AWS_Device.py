@@ -5,8 +5,8 @@ import re
 
 dev_var = Variables()
 dev_var.add('aws_ip', var_type='IP Address')
-dev_var.add('username', var_type='String')
-dev_var.add('password', var_type='String')
+dev_var.add('aws_username', var_type='String')
+dev_var.add('aws_password', var_type='String')
 
 context = Variables.task_call(dev_var)
 
@@ -16,8 +16,8 @@ aws_device = Device(customer_id = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).
                         manufacturer_id = '17010301',
                         password_admin = '',
                         model_id = '17010301',
-                        login = context['username'], 
-                        password = context['password'], 
+                        login = context['aws_username'], 
+                        password = context['aws_password'], 
                         management_address = context['aws_ip'],
                         management_port = '')
 
