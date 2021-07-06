@@ -26,10 +26,11 @@ output = aws_device.read()
 aws_device_info = json.loads(output)
 
 conf_profile = ConfProfile(profileId=9096)
-conf_output = conf_profile.read()
-conf_profile_info = json.loads(conf_output)
+conf_profile.read()
 
-conf_profile_info['attachedManagedEntities'] = [aws_device_info['id']]
+
+conf_profile.attachedManagedEntities = [aws_device_info['id']]
+conf_profile.update()
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
