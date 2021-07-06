@@ -29,6 +29,16 @@
       <displayName>launch_deep_scan</displayName>
     </task>
   </process>
+  <process name="Process/workflows/Fast_Network_Scan/Process_AWS_discovery">
+    <displayName>AWS discovery</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_Create_AWS_Device.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Fast_Network_Scan/Process_AWS_discovery/Tasks</processPath>
+      <displayName>Create_AWS_Device</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description/>
