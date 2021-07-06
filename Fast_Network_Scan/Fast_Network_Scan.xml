@@ -50,7 +50,7 @@
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
     <visibility>5</visibility>
-    <name>Fast Network Scan</name>
+    <name>Infrastructure Discovery</name>
     <group/>
   </information>
 </ObjectDefinition>
