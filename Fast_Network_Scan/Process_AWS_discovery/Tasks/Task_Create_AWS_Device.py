@@ -4,6 +4,7 @@ from msa_sdk.device import Device
 from msa_sdk.conf_profile import ConfProfile
 import re
 import json
+import time
 
 dev_var = Variables()
 dev_var.add('aws_ip', var_type='IP Address')
@@ -42,6 +43,8 @@ conf_profile.attachedManagedEntities = [aws_device_info['id']]
 conf_profile.update()
 
 aws_device.initial_provisioning()
+while aws_device.provision_status()['status'] == 'RUNNING':
+    time.sleep(3)
 
 prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
 
