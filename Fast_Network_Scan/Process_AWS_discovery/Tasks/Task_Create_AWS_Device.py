@@ -36,7 +36,7 @@ conf_profile.update()
 
 prefix = re.match('^(\D+)?\d+?$',context['UBIQUBEID']).group(1)
 
-context['device_id'] = prefix+aws_device_info['id']
+context['device_id'] = prefix+str(aws_device_info['id'])
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
