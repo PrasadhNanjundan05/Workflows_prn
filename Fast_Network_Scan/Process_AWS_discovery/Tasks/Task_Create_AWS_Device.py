@@ -27,7 +27,7 @@ aws_device.create()
 output = aws_device.read()
 aws_device_info = json.loads(output)
 
-conf_profile = ConfProfile(profile_id=9096)
+conf_profile = ConfProfile(profile_id=179)
 conf_profile.read()
 
 
