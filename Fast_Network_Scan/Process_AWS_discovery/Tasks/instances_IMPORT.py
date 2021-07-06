@@ -3,12 +3,6 @@ from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
 
-# List all the parameters required by the task
-dev_var = Variables()
-dev_var.add('device_id', var_type='Device')
-
-context = Variables.task_call(dev_var)
-
 # read the ID of the selected managed entity
 device_id = context['device_id']
 
