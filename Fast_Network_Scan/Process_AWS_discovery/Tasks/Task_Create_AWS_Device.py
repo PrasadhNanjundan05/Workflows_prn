@@ -34,6 +34,8 @@ conf_profile.read()
 conf_profile.attachedManagedEntities = [aws_device_info['id']]
 conf_profile.update()
 
+aws_device.initial_provisioning()
+
 prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
 
 context['device_id'] = prefix+str(aws_device_info['id'])
