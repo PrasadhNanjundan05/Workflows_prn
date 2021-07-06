@@ -2,6 +2,7 @@ from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.device import Device
 import re
+import json
 
 dev_var = Variables()
 dev_var.add('aws_ip', var_type='IP Address')
