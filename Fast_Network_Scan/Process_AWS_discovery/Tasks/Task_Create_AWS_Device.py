@@ -32,7 +32,7 @@ aws_device_info = json.loads(output)
 msa_object  = MSA_API()
 msa_object.action = 'Update Device Hostname'
 msa_object.path   = "/device/v1/{}/hostname/{}".format(aws_device_info['id'], context['aws_hostname'])
-msa_object._call_post()
+msa_object._call_put()
 
 conf_profile = ConfProfile(profile_id=179)
 conf_profile.read()
