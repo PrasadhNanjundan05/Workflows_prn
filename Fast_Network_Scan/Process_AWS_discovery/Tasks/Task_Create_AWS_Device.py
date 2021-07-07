@@ -15,7 +15,22 @@ dev_var.add('aws_hostname', var_type='String')
 
 context = Variables.task_call(dev_var)
 
-aws_device = Device(customer_id = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).group(1), 
+msa_object  = MSA_API()
+
+customerId = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).group(1)
+
+msa_object.path = "/device/v1/customer/{}/device-features".format(customerId)
+msa_object._call_get()
+
+device_exists = False
+for device in json.loads(msa_object.content):
+        if device['externalReference'] == 'AWSDISME':
+            context['device_id'] = device['id']
+            device_exists = True
+            
+
+if not device_exists:
+    aws_device = Device(customer_id = customerId, 
                         name = 'AWS Discovery ME', 
                         device_external = 'AWSDISME',
                         manufacturer_id = '17010301',
@@ -26,29 +41,29 @@ aws_device = Device(customer_id = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).
                         management_address = context['aws_ip'],
                         management_port = '')
 
-aws_device.create()
-output = aws_device.read()
-aws_device_info = json.loads(output)
-
-msa_object  = MSA_API()
-msa_object.action = 'Update Device Hostname'
-msa_object.path   = "/device/v1/{}/hostname/{}".format(aws_device_info['id'], context['aws_hostname'])
-msa_object._call_put()
-
-conf_profile = ConfProfile(profile_id=179)
-conf_profile.read()
+    aws_device.create()
+    output = aws_device.read()
+    aws_device_info = json.loads(output)
 
 
-conf_profile.attachedManagedEntities = [aws_device_info['id']]
-conf_profile.update()
+    msa_object.action = 'Update Device Hostname'
+    msa_object.path   = "/device/v1/{}/hostname/{}".format(aws_device_info['id'], context['aws_hostname'])
+    msa_object._call_put()
 
-aws_device.initial_provisioning()
-while aws_device.provision_status()['status'] == 'RUNNING':
-    time.sleep(3)
+    conf_profile = ConfProfile(profile_id=179)
+    conf_profile.read()
 
-prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
 
-context['device_id'] = prefix+str(aws_device_info['id'])
+    conf_profile.attachedManagedEntities = [aws_device_info['id']]
+    conf_profile.update()
+
+    aws_device.initial_provisioning()
+    while aws_device.provision_status()['status'] == 'RUNNING':
+        time.sleep(3)
+
+    prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
+
+    context['device_id'] = prefix+str(aws_device_info['id'])
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
