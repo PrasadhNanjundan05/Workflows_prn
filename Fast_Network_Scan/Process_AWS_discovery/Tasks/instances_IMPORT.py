@@ -40,7 +40,7 @@ for instance in instances:
         host_info['selected'] = True
         host_info['vendor'] = None
         host_info['model'] = None
-        context['hosts'].append(host_info)= 
+        context['hosts'].append(host_info)
 
 # check if the response is OK
 if order.response.ok:
