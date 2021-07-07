@@ -37,6 +37,7 @@ for instance in instances:
     util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(instance), context['PROCESSINSTANCEID'])
     instance_info = instances[instance]
     if instance_info['State']['0']['state_name'] == 'running':
+        host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
         host_info['vendor'] = None
