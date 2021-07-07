@@ -33,11 +33,14 @@ message_content = json.loads(content['message'])
 instances = message_content['instances']
 
 
-i = context['hosts'].length
 for instance in instances:
     if instance['State']['0']['state_name'] == 'running':
         i += 1
-        context['hosts'][i]['ip_address'] = instance['public_dns_name']
+        host_info['ip_address'] = instance['public_dns_name']
+        host_info['selected'] = True
+        host_info['vendor'] = None
+        host_info['model'] = None
+        context['hosts'].append(host_info)= 
 
 # check if the response is OK
 if order.response.ok:
