@@ -34,7 +34,6 @@ instances = message_content['instances']
 
 
 for instance in instances:
-    util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(instance), context['PROCESSINSTANCEID'])
     instance_info = instances[instance]
     if instance_info['State']['0']['state_name'] == 'running':
         host_info = dict()
