@@ -27,7 +27,6 @@ for device in json.loads(msa_object.content):
         if device['externalReference'] == 'AWSDISME':
             context['device_id'] = device['id']
             device_exists = True
-            
 
 if not device_exists:
     aws_device = Device(customer_id = customerId, 
