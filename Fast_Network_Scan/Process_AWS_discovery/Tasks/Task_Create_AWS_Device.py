@@ -17,7 +17,7 @@ context = Variables.task_call(dev_var)
 
 aws_device = Device(customer_id = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).group(1), 
                         name = 'AWS Discovery ME', 
-                        device_external = '',
+                        device_external = 'AWSDISME',
                         manufacturer_id = '17010301',
                         password_admin = '',
                         model_id = '17010301',
