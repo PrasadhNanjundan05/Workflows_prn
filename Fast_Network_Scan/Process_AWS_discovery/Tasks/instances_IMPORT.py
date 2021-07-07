@@ -2,6 +2,7 @@ import json
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
+from msa_sdk import util
 
 dev_var = Variables()
 context = Variables.task_call(dev_var)
@@ -26,10 +27,9 @@ order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
-
+util.log_to_process_file(context['PROCESSINSTANCEID'], json.dumps(content['message']), context['SERVICEINSTANCEID'])
 # check if the response is OK
 if order.response.ok:
-    context.update(content['message'])
     ret = MSA_API.process_content('ENDED',
                                   f'STATUS: {content["status"]}, \
                                     MESSAGE: successfull',
