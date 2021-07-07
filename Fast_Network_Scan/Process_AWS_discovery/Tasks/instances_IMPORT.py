@@ -27,7 +27,16 @@ order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
-util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
+#util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
+
+instances = context['message']['instances']
+
+int i = context['hosts'].length
+for instance in instances:
+    if instance['State']['0']['state_name'] == 'running':
+        i += 1
+        context['hosts'][i]['ip_address'] = instance['public_dns_name']
+
 # check if the response is OK
 if order.response.ok:
     ret = MSA_API.process_content('ENDED',
