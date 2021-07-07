@@ -31,7 +31,7 @@ content = json.loads(order.content)
 
 instances = context['message']['instances']
 
-int i = context['hosts'].length
+i = context['hosts'].length
 for instance in instances:
     if instance['State']['0']['state_name'] == 'running':
         i += 1
