@@ -27,7 +27,7 @@ order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
-util.log_to_process_file(context['PROCESSINSTANCEID'], order.content, context['SERVICEINSTANCEID'])
+util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
 # check if the response is OK
 if order.response.ok:
     ret = MSA_API.process_content('ENDED',
