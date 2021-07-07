@@ -18,6 +18,7 @@ context = Variables.task_call(dev_var)
 msa_object  = MSA_API()
 
 customerId = re.match('^\D+?(\d+?)$',context['UBIQUBEID']).group(1)
+prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
 
 msa_object.path = "/device/v1/customer/{}/device-features".format(customerId)
 msa_object._call_get()
@@ -25,7 +26,7 @@ msa_object._call_get()
 device_exists = False
 for device in json.loads(msa_object.content):
         if device['externalReference'] == 'AWSDISME':
-            context['device_id'] = device['id']
+            context['device_id'] = prefix+str(device['id'])
             device_exists = True
 
 if not device_exists:
@@ -59,9 +60,7 @@ if not device_exists:
     aws_device.initial_provisioning()
     while aws_device.provision_status()['status'] == 'RUNNING':
         time.sleep(3)
-
-    prefix = re.match('^(\D{3})?A\d+?$',context['UBIQUBEID']).group(1)
-
+        
     context['device_id'] = prefix+str(aws_device_info['id'])
 
 
