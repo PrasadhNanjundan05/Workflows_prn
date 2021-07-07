@@ -34,9 +34,10 @@ instances = message_content['instances']
 
 
 for instance in instances:
-    if instance['State']['0']['state_name'] == 'running':
-        i += 1
-        host_info['ip_address'] = instance['public_dns_name']
+    instance_info = json.loads(instance)
+    util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(instance_info), context['PROCESSINSTANCEID'])
+    if instance_info['State']['0']['state_name'] == 'running':
+        host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
         host_info['vendor'] = None
         host_info['model'] = None
