@@ -29,7 +29,9 @@ order.command_execute('IMPORT', object_parameters)
 content = json.loads(order.content)
 #util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
 
-instances = content['message']['instances']
+message_content = json.loads(content['message'])
+instances = message_content['instances']
+
 
 i = context['hosts'].length
 for instance in instances:
