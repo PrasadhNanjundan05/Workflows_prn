@@ -29,6 +29,7 @@ content = json.loads(order.content)
 
 # check if the response is OK
 if order.response.ok:
+    context.update(content['message'])
     ret = MSA_API.process_content('ENDED',
                                   f'STATUS: {content["status"]}, \
                                     MESSAGE: successfull',
