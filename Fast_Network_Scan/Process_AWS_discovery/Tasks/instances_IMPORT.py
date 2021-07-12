@@ -39,7 +39,7 @@ for instance in instances:
         host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
-        image_desc = filter(lambda var: var['object_id'] == instance_info['image_id'], context['hosts'])
+        image_desc = dict(filter(lambda var: var['object_id'] == instance_info['image_id'], context['hosts']))
         host_info['vendor'] = images_desc['image_name']
         host_info['model'] = images_desc['description']
         context['hosts'].append(host_info)
