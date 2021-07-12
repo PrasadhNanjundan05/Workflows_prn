@@ -8,6 +8,7 @@ from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 
 dev_var = Variables()
+
 dev_var.add('host', var_type='String')
 dev_var.add('username', var_type='String')
 dev_var.add('password', var_type='String')
@@ -47,9 +48,10 @@ def ssh(host, cmd, user, password, timeout=30, bg_run=False):
 
 '''
 context = Variables.task_call(dev_var)
+
 '''
 ssh(context['host'], "cd "+str(context['quickstartDir'])+"; git checkout master; git pull;", context['username'], context['password'])
-'''
-ret = MSA_API.process_content('ENDED', f'Latest config pulled successfully ', context, True)
-print(ret)
 
+'''
+ret = MSA_API.process_content('ENDED', 'Later config pull successfully', context, True)
+print(ret)
