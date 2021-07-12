@@ -35,7 +35,7 @@ instances = message_content['instances']
 object_parameters['images'] = '0';
 order.command_execute('IMPORT', object_parameters)
 image_content = json.loads(order.content)
-output = json.loads(content['message'])
+output = json.loads(image_content['message'])
 images = message_content['images']
 
 
@@ -45,7 +45,7 @@ for instance in instances:
         host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
-        image_desc = filter(lambda var: var['image_id'] == instance_info[''], context['hosts'])
+        image_desc = filter(lambda var: var['image_id'] == instance_info['image_id'], context['hosts'])
         host_info['vendor'] = images_desc['image_name']
         host_info['model'] = images_desc['description']
         context['hosts'].append(host_info)
