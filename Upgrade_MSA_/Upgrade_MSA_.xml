@@ -43,7 +43,7 @@
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
     <visibility>5</visibility>
-    <name>Upgrade MSA </name>
+    <name>Upgrade MSA</name>
     <group/>
   </information>
 </ObjectDefinition>
