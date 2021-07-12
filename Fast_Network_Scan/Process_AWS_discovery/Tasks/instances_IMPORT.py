@@ -32,6 +32,12 @@ content = json.loads(order.content)
 message_content = json.loads(content['message'])
 instances = message_content['instances']
 
+object_parameters['images'] = '0';
+order.command_execute('IMPORT', object_parameters)
+image_content = json.loads(order.content)
+output = json.loads(content['message'])
+images = message_content['images']
+
 
 for instance in instances:
     instance_info = instances[instance]
@@ -39,7 +45,7 @@ for instance in instances:
         host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
-        host_info['vendor'] = None
+        host_info['vendor'] = images['']
         host_info['model'] = None
         context['hosts'].append(host_info)
 # check if the response is OK
