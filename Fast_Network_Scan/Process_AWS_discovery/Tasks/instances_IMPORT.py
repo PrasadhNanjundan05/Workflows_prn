@@ -45,8 +45,9 @@ for instance in instances:
         host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
-        host_info['vendor'] = images['']
-        host_info['model'] = None
+        image_desc = filter(lambda var: var['image_id'] == instance_info[''], context['hosts'])
+        host_info['vendor'] = images_desc['image_name']
+        host_info['model'] = images_desc['description']
         context['hosts'].append(host_info)
 # check if the response is OK
 if order.response.ok:
