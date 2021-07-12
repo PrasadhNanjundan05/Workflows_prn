@@ -57,5 +57,5 @@ ssh(context['host'], "cp "+str(context['quickstartDir'])+"/docker-compose.yml /t
 
 ret = MSA_API.process_content('ENDED', f'Backup successful ', context, True)
 '''
-print('{"wo_status": "ENDED", "wo_comment": "Backup successful ", "wo_newparams": {"password": "$ubiqube", "host": "10.31.1.230", "quickstartDir": "/root/quickstart", "username": "root", "service_id": "125870",')
+print('{"wo_status": "ENDED", "wo_comment": "Backup successful ", "wo_newparams": {"password": "$ubiqube", "host": "10.31.1.230", "quickstartDir": "/root/quickstart", "username": "root", "service_id": "125870"}}')
 
