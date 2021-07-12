@@ -47,15 +47,15 @@ def ssh(host, cmd, user, password, timeout=30, bg_run=False):
 
 '''
 context = Variables.task_call(dev_var)
+'''
 print(context['host'])
 print(context['quickstartDir'])
 print(context['username'])
 print(context['password'])
-
+'''
 '''
 ssh(context['host'], "cp "+str(context['quickstartDir'])+"/docker-compose.yml /tmp/docker-compose.yml", context['username'], context['password'])
 
-ret = MSA_API.process_content('ENDED', f'Backup successful ', context, True)
 '''
-print('{"wo_status": "ENDED", "wo_comment": "Backup successful ", "wo_newparams": {"password": "$ubiqube", "host": "10.31.1.230", "quickstartDir": "/root/quickstart", "username": "root", "service_id": "125870"}}')
-
+ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
+print(ret)`
