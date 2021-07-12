@@ -19,7 +19,7 @@ devicelongid = device_id[3:]
 object_parameters = {}
 
 object_parameters['instances'] = '0';
-
+object_parameters['Images'] = '0';
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
@@ -31,13 +31,7 @@ content = json.loads(order.content)
 
 message_content = json.loads(content['message'])
 instances = message_content['instances']
-
-object_parameters['images'] = '0';
-order.command_execute('IMPORT', object_parameters)
-image_content = json.loads(order.content)
-output = json.loads(image_content['message'])
-images = message_content['images']
-
+images = message_content['Images']
 
 for instance in instances:
     instance_info = instances[instance]
