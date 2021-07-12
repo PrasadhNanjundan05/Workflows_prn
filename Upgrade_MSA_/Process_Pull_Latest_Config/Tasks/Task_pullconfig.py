@@ -53,5 +53,5 @@ context = Variables.task_call(dev_var)
 ssh(context['host'], "cd "+str(context['quickstartDir'])+"; git checkout master; git pull;", context['username'], context['password'])
 
 '''
-ret = MSA_API.process_content('ENDED', 'Later config pull successfully', context, True)
+ret = MSA_API.process_content('ENDED', 'Latest config pull successfully', context, True)
 print(ret)
