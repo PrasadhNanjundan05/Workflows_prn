@@ -16,8 +16,11 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
-dev_var.add('var_name', var_type='String')
-dev_var.add('var_name2', var_type='Integer')
+dev_var.add('host', var_type='String')
+dev_var.add('username', var_type='String')
+dev_var.add('password', var_type='String')
+dev_var.add('host', var_type='String')
+
 
 '''
 context => Service Context variable per Service Instance
