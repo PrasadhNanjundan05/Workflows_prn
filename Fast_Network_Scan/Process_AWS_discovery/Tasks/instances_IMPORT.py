@@ -27,7 +27,7 @@ order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
-#util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
+util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
 
 message_content = json.loads(content['message'])
 instances = message_content['instances']
