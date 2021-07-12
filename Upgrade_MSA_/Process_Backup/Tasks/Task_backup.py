@@ -52,6 +52,5 @@ NOTE : For 'wo_newparams', always pass "context" [whether wo_status is ENDED/FAI
 The response "ret" should be echoed from the Task "print(ret)" which is read by Orchestration Engine
 In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
 '''
-ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
-print({"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}})
+task_success('Backup Successful');
 
