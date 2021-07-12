@@ -19,7 +19,7 @@ dev_var = Variables()
 dev_var.add('host', var_type='String')
 dev_var.add('username', var_type='String')
 dev_var.add('password', var_type='String')
-dev_var.add('host', var_type='String')
+dev_var.add('quickstartDir', var_type='String')
 
 
 '''
@@ -32,7 +32,7 @@ Update context array [add/update/delete variables] as per requirement
 ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
-context['var_name2'] = int(context['var_name2']) + 1
+
 
 '''
 Format of the Task response :
@@ -53,5 +53,5 @@ The response "ret" should be echoed from the Task "print(ret)" which is read by 
 In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
 '''
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
-print(ret)
+print({"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}})
 
