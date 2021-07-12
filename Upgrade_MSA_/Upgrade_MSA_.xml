@@ -6,6 +6,16 @@
     <variable displayName="Quickstart Directory" name="params.quickstartDir" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="Directory path for quickstart" groupSeparator="" groupDisplayName="" displayOrder="3" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
+  <process name="Process/workflows/Upgrade_MSA_/Process_Backup">
+    <displayName>Backup</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_backup.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Upgrade_MSA_/Process_Backup/Tasks</processPath>
+      <displayName>backup</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description>Upgrade MSA to the latest version</description>
