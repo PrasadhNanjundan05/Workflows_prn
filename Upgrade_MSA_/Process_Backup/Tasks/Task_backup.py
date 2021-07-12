@@ -58,5 +58,5 @@ print(context['password'])
 ssh(context['host'], "cp "+str(context['quickstartDir'])+"/docker-compose.yml /tmp/docker-compose.yml", context['username'], context['password'])
 
 '''
-ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
+ret = MSA_API.process_content('ENDED', 'Backup successful', context, True)
 print(ret)
