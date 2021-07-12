@@ -40,8 +40,8 @@ for instance in instances:
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
         image_desc = images[instance_info['image_id']]
-        host_info['vendor'] = images_desc['image_name']
-        host_info['model'] = images_desc['description']
+        host_info['vendor'] = image_desc['image_name']
+        host_info['model'] = image_desc['description']
         context['hosts'].append(host_info)
 # check if the response is OK
 if order.response.ok:
