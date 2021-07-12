@@ -17,7 +17,7 @@ dev_var.add('password', var_type='String')
 dev_var.add('quickstartDir', var_type='String')
 
 
-'''
+
 
 def ssh(host, cmd, user, password, timeout=30, bg_run=False):
     """SSH'es to a host using the supplied credentials and executes a command.
@@ -48,7 +48,7 @@ def ssh(host, cmd, user, password, timeout=30, bg_run=False):
 
     return stdout
 
-'''
+
 context = Variables.task_call(dev_var)
 
 '''
