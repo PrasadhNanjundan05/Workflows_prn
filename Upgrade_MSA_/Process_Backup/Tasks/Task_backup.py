@@ -59,4 +59,4 @@ ssh(context['host'], "cp "+str(context['quickstartDir'])+"/docker-compose.yml /t
 
 '''
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
-print(ret)`
+print(ret)
