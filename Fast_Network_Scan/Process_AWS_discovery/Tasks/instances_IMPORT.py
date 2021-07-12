@@ -27,7 +27,7 @@ order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
-util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
+#util.log_to_process_file(context['SERVICEINSTANCEID'], json.dumps(content['message']), context['PROCESSINSTANCEID'])
 
 message_content = json.loads(content['message'])
 instances = message_content['instances']
@@ -39,7 +39,7 @@ for instance in instances:
         host_info = dict()
         host_info['ip_address'] = instance_info['public_dns_name']
         host_info['selected'] = True
-        image_desc = dict(filter(lambda var: var['object_id'] == instance_info['image_id'], images))
+        image_desc = images[instance_info['image_id']]
         host_info['vendor'] = images_desc['image_name']
         host_info['model'] = images_desc['description']
         context['hosts'].append(host_info)
