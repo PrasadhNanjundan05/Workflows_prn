@@ -52,8 +52,8 @@ def ssh(host, cmd, user, password, timeout=30, bg_run=False):
 context = Variables.task_call(dev_var)
 
 
-ssh(context['host'], "cd "+str(context['quickstartDir'])+"; docker-compose up > /dev/null 2>&1", context['username'], context['password'])
+ssh(context['host'], "cd "+str(context['quickstartDir'])+"; docker-compose up > /dev/null 2>&1; ", context['username'], context['password'])
 
 
-ret = MSA_API.process_content('ENDED', 'MSA upgraded successfully', context, True)
+ret = MSA_API.process_content('ENDED', 'Upgraded successfully', context, True)
 print(ret)
