@@ -48,12 +48,12 @@ def ssh(host, cmd, user, password, timeout=30, bg_run=False):
 
 '''
 context = Variables.task_call(dev_var)
-
+'''
 print(context['host'])
 print(context['quickstartDir'])
 print(context['username'])
 print(context['password'])
-
+'''
 '''
 ssh(context['host'], "cp "+str(context['quickstartDir'])+"/docker-compose.yml /tmp/docker-compose.yml", context['username'], context['password'])
 
