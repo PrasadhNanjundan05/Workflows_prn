@@ -14,8 +14,9 @@ dev_var.add('quickstartDir', var_type='String')
 
 context = Variables.task_call(dev_var)
 
+def test():
+    return "Success"
 
-
-ret = MSA_API.process_content('ENDED', f'Backup successful', context, True)
+ret = MSA_API.process_content('ENDED', f'Backup successful '+test(), context, True)
 print(ret)
 
