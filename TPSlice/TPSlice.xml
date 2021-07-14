@@ -1,5 +1,7 @@
 <ObjectDefinition>
-  <variables frozen="0"/>
+  <variables frozen="0">
+    <variable displayName="Domain Map" name="params.domain_map" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+  </variables>
   <example/>
   <process name="Process/workflows/TPSlice/Process_create_instance">
     <displayName>create instance</displayName>
