@@ -45,7 +45,7 @@ for hosts in hosts_per_wf:
     data = dict()
     data['hosts'] = hosts
     data['snmp_communities'] = communities
-    serviceId, processId = Orchestration.execute_service_process('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Scan', data)
+    serviceId, processId = Orchestration.execute_service_process('Process/workflows/Deep_Network_Scan/Deep_Network_Scan', 'Process/workflows/Deep_Network_Scan/Process_Deep_Network_Scan', data)
     if processId and serviceId is not None:
         process_info = dict()
         process_info[processId] = serviceId
