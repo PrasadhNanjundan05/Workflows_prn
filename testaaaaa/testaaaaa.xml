@@ -1,8 +1,8 @@
 <ObjectDefinition>
   <variables frozen="0"/>
   <example/>
-  <process name="Process/workflows/testaaaaa/Process_one">
-    <displayName>one</displayName>
+  <process name="Process/workflows/testaaaaa/Process_three">
+    <displayName>three</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
@@ -13,8 +13,8 @@
     <visibility>5</visibility>
     <allowSchedule/>
   </process>
-  <process name="Process/workflows/testaaaaa/Process_three">
-    <displayName>three</displayName>
+  <process name="Process/workflows/testaaaaa/Process_one">
+    <displayName>one</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
