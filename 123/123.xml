@@ -1,6 +1,20 @@
 <ObjectDefinition>
   <variables frozen="0"/>
   <example/>
+  <process name="Process/workflows/123/Process_1">
+    <displayName>1</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_01.py">
+      <processPath>/opt/fmc_repository/Process/workflows/123/Process_1/Tasks</processPath>
+      <displayName>01</displayName>
+    </task>
+    <task name="Task_02.py">
+      <processPath>/opt/fmc_repository/Process/workflows/123/Process_1/Tasks</processPath>
+      <displayName>02</displayName>
+    </task>
+  </process>
   <process name="Process/workflows/123/Process_2">
     <displayName>2</displayName>
     <type>CREATE</type>
@@ -17,20 +31,6 @@
     <task name="Task_3.py">
       <processPath>/opt/fmc_repository/Process/workflows/123/Process_2/Tasks</processPath>
       <displayName>3</displayName>
-    </task>
-  </process>
-  <process name="Process/workflows/123/Process_1">
-    <displayName>1</displayName>
-    <type>CREATE</type>
-    <visibility>5</visibility>
-    <allowSchedule/>
-    <task name="Task_02.py">
-      <processPath>/opt/fmc_repository/Process/workflows/123/Process_1/Tasks</processPath>
-      <displayName>02</displayName>
-    </task>
-    <task name="Task_01.py">
-      <processPath>/opt/fmc_repository/Process/workflows/123/Process_1/Tasks</processPath>
-      <displayName>01</displayName>
     </task>
   </process>
   <information>
