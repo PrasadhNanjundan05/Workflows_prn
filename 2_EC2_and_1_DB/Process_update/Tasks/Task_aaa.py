@@ -1,3 +1,5 @@
+import time
+
 '''
 Visit http://[YOUR_MSA_URL]/msa_sdk/ to see what you can import.
 '''
@@ -17,6 +19,7 @@ The allowed types are:
 '''
 dev_var = Variables()
 dev_var.add('name', var_type='String')
+time.sleep(10)
 
 '''
 context => Service Context variable per Service Instance
