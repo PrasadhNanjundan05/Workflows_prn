@@ -19,7 +19,6 @@ The allowed types are:
 '''
 dev_var = Variables()
 dev_var.add('name', var_type='String')
-time.sleep(10)
 
 '''
 context => Service Context variable per Service Instance
@@ -31,6 +30,7 @@ Update context array [add/update/delete variables] as per requirement
 ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
+time.sleep(10)
 
 '''
 Format of the Task response :
