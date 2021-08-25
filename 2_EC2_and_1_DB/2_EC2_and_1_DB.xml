@@ -19,6 +19,12 @@
     <visibility>5</visibility>
     <allowSchedule/>
   </process>
+  <process name="Process/workflows/2_EC2_and_1_DB/Process_Configs">
+    <displayName>Configs</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+  </process>
   <information>
     <icon/>
     <description/>
