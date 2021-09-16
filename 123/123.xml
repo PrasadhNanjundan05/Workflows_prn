@@ -21,6 +21,12 @@
       <displayName>3</displayName>
     </task>
   </process>
+  <process name="Process/workflows/123/Process_Create">
+    <displayName>Create</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+  </process>
   <information>
     <icon/>
     <description/>
