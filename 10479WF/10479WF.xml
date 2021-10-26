@@ -18,6 +18,10 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
+    <task name="Task_first.py">
+      <processPath>/opt/fmc_repository/Process/workflows/10479WF/Process_UPDATE/Tasks</processPath>
+      <displayName>first</displayName>
+    </task>
   </process>
   <process name="Process/workflows/10479WF/Process_DELETE">
     <displayName>DELETE</displayName>
