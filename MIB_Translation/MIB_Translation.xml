@@ -18,7 +18,7 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="">
+    <task name="Process/workflows/MIB_Translation/Process_Initialize_Import/Tasks/Task_Import_MIBs.py">
       <processPath></processPath>
       <displayName>Import MIBs</displayName>
     </task>
