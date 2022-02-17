@@ -1,11 +1,17 @@
 <ObjectDefinition>
-  <variables frozen="0"/>
+  <variables frozen="0">
+    <variable displayName="import_mibs_path" name="params.import_mibs_path" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+  </variables>
   <example/>
   <process name="Process/workflows/MIB_Translation/Process_Initialize_Import">
     <displayName>Initialize Import</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
+    <task name="Task_Import_MIBs.py">
+      <processPath>/opt/fmc_repository/Process/workflows/MIB_Translation/Process_Initialize_Import/Tasks</processPath>
+      <displayName>Import MIBs</displayName>
+    </task>
   </process>
   <information>
     <icon/>
