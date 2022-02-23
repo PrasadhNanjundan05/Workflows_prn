@@ -24,10 +24,6 @@
       <processPath></processPath>
       <displayName>Import MIBs</displayName>
     </task>
-    <task name="Task_Translate_OID.py">
-      <processPath>/opt/fmc_repository/Process/workflows/MIB_Translation/Process_Re-import_MIBs/Tasks</processPath>
-      <displayName>Translate OID</displayName>
-    </task>
   </process>
   <information>
     <icon/>
