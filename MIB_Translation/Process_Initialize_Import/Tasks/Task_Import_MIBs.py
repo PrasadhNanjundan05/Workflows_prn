@@ -56,10 +56,10 @@ cmd = ['/usr/bin/snmptranslate', '-Pu', '-Tz', '-M', mib_path_str, '-m', mib_nam
 # for python >= 3.7 replace universal_newlines by text
 proc = subprocess.run(cmd, stdout = subprocess.PIPE, stderr = subprocess.STDOUT, universal_newlines = True)
 if proc.returncode == 0:
+    # each line of out is like "oid name" "oid"
     out = proc.stdout
     pattern = '^\s*"([^"]+)"\s+"([^"]+)"'
     regc = re.compile(pattern, flags = re.MULTILINE)
-    # each line of out is like "oid name" "oid"
     result = regc.findall(out)
     if result != None:
         # result is a list of tuple, each tuple is a (oid_name, oid) pair
