@@ -47,9 +47,9 @@ for mib_path in mibs_path_root_list:
 '''
 Parse the MIBs
     translate OID names in OIDs thanks to snmptranslate CLI
-    build the dictionary oid_list with key = oid, value = oid name
+    build the dictionary imported_oid_list with key = oid, value = oid name
 '''
-oid_list = {}
+imported_oid_list = {}
 mib_path_str = ':'.join(mibs_path_list)
 mib_name_str = ':'.join(mib_name_list)
 cmd = ['/usr/bin/snmptranslate', '-Pu', '-Tz', '-M', mib_path_str, '-m', mib_name_str]
@@ -64,9 +64,11 @@ if proc.returncode == 0:
     if result != None:
         # result is a list of tuple, each tuple is a (oid_name, oid) pair
         for name, oid in result:
-            if not oid in oid_list:
-                oid_list[oid] = name
+            if not oid in imported_oid_list:
+                imported_oid_list[oid] = name
 
-ret = MSA_API.process_content('ENDED', f'Import OK\n{oid_list}', context, True)
+context['imported_oids'] = imported_oid_list
+
+ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
 print(ret)
 
