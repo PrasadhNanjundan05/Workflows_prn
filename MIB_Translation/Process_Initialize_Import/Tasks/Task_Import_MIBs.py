@@ -44,6 +44,8 @@ for mib_path in mibs_path_root_list:
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
 
+mib_name_list['UBIQUBE-MIB'] = True
+mib_name_list['UBIQUBE-SEC-ENGINE-MIB'] = True
 '''
 Parse the MIBs
     translate OID names in OIDs thanks to snmptranslate CLI
