@@ -13,8 +13,8 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
-dev_var.add('imported_oids.0.oid_name', var_type='Composite')
-dev_var.add('imported_oids.0.oid', var_type='Composite')
+dev_var.add('imported_oids.0.oid_name', var_type='String')
+dev_var.add('imported_oids.0.oid', var_type='String')
 
 '''
 context => Service Context variable per Service Instance
