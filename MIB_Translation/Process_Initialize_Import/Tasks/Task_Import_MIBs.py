@@ -73,15 +73,54 @@ if proc.returncode == 0:
                 oid_list[oid] = name
 
 '''
+Build a tree to identify leafs
+'''
+oid_tree = {}
+def add_node(tree, oid, name):
+    new_tree = cur_tree = tree
+    for item in oid.split('.'):
+        if item not in cur_tree:
+            cur_tree[item] = {}
+        cur_tree = cur_tree[item]
+    return new_tree
+
+for oid, name in oid_list.items():
+    oid_tree = add_node(oid_tree, oid, name)
+
+'''
+Get leafs from the tree
+and keep them in a dictionary
+'''
+leaf_list= {}
+oid = ''
+def get_leaf(tree, oid, leafs):
+    cur_oid = oid
+    cur_leafs = leafs
+    for key, value in tree.items():
+        if oid:
+            cur_oid = oid + '.' + key
+        else:
+            cur_oid = key
+        if value:
+            cur_leafs = get_leaf(value, cur_oid, cur_leafs)
+        else:
+            cur_leafs[cur_oid] = True
+    return cur_leafs
+
+leaf_list = get_leaf(oid_tree, oid, leaf_list)
+
+'''
 Build a new dictionary for the WF task
+keep only leafs
 '''
 imported_oid_list = {}
 i = 0
 for oid, name in oid_list.items():
-    imported_oid_list[i] = {}
-    imported_oid_list[i]['oid'] = oid
-    imported_oid_list[i]['oid_name'] = name
-    i += 1
+    if oid in leaf_list:
+        imported_oid_list[i] = {}
+        imported_oid_list[i]['oid'] = oid
+        imported_oid_list[i]['oid_name'] = name
+        i += 1
 
 context['imported_oids'] = imported_oid_list
 
