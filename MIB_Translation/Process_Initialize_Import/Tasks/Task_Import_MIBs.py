@@ -87,8 +87,8 @@ context['imported_oids'] = imported_oid_list
 
 imported_mib = ', '.join(mib_name_list)
 imported_mib_nb = len(mib_name_list)
-msg = f'{imported_mib_nb} imported MIBs: {imported_mib}'
+context['impoort_summary'] = f'{imported_mib_nb} imported MIBs: {imported_mib}'
 
-ret = MSA_API.process_content('ENDED', f'Import OK\n{msg}', context, True)
+ret = MSA_API.process_content('ENDED', f'Import OK', context, True)
 print(ret)
 
