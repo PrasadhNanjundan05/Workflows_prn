@@ -11,17 +11,20 @@ dev_var.add('import_mibs_path', var_type='String')
 context = Variables.task_call(dev_var)
 import_mibs_path = context['import_mibs_path']
 
-mibs_path_root_list = ['/usr/share/snmp/mibs', import_mibs_path]
+standard_mibs_path = '/usr/share/snmp/mibs'
+mibs_path_root_list = [standard_mibs_path, import_mibs_path]
 mibs_path_list = {} # use a dictionary to have each path once
 
 extention_mib_file_list = ('.txt')
 mib_name_list = {}
 
 '''
-Get the list of the MIB names
-    walk through the mib_path_list recursively
-    for each file having an extension name in extention_mib_file_list
+Get the list of the MIB names and the list of the path where MIBs are located (recursive search)
+    Walk through the mib_path_list recursively
+    For each file having an extension name in extention_mib_file_list
     get the MIB name and save the result in a dictionary mib_name_list
+    except for standard mibs (standard_mibs_path)
+    Build the list of path where MIBs are located
 '''
 pattern = '^\s*([^\s]+)\s+DEFINITIONS\s+::= BEGIN'
 regc = re.compile(pattern)
@@ -40,12 +43,11 @@ for mib_path in mibs_path_root_list:
     for dirpath, dirs, files in os.walk(mib_path):
         for fname in files:
             if fname.endswith(extention_mib_file_list):
-                mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
+	            if mib_path != standard_mibs_path:
+	                mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
-mib_name_list = {}
-mib_name_list['UBIQUBE-MIB'] = True
-mib_name_list['UBIQUBE-SEC-ENGINE-MIB'] = True
+
 '''
 Parse the MIBs
     translate OID names in OIDs thanks to snmptranslate CLI
