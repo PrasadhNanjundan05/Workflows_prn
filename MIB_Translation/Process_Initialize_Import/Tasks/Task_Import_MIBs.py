@@ -43,8 +43,8 @@ for mib_path in mibs_path_root_list:
     for dirpath, dirs, files in os.walk(mib_path):
         for fname in files:
             if fname.endswith(extention_mib_file_list):
-	            if mib_path != standard_mibs_path:
-	                mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
+                if mib_path != standard_mibs_path:
+                    mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
 
