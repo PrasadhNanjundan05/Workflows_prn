@@ -43,7 +43,7 @@ for mib_path in mibs_path_root_list:
                 mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
-
+mib_name_list = {}
 mib_name_list['UBIQUBE-MIB'] = True
 mib_name_list['UBIQUBE-SEC-ENGINE-MIB'] = True
 '''
