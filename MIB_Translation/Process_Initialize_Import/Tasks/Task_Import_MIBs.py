@@ -52,6 +52,7 @@ for mib_path in mibs_path_root_list:
                     mibs_path_list[dirpath] = True
 
 if not mib_name_list:
+    context['imported_oids'] = {}
     context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
