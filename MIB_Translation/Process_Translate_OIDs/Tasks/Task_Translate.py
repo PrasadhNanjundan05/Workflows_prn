@@ -15,6 +15,7 @@ The allowed types are:
 dev_var = Variables()
 dev_var.add('imported_oids.0.oid_name', var_type='String')
 dev_var.add('imported_oids.0.oid', var_type='String')
+dev_var.add('imported_oids.0.selected', var_type='Boolean')
 
 '''
 context => Service Context variable per Service Instance
