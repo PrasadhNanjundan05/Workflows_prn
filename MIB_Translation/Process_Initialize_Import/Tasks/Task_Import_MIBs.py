@@ -18,6 +18,9 @@ mibs_path_list = {} # use a dictionary to have each path once
 extention_mib_file_list = ('.txt')
 mib_name_list = {}
 
+imported_mib = ''
+imported_mib_nb = 0
+
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
@@ -49,8 +52,6 @@ for mib_path in mibs_path_root_list:
                     mibs_path_list[dirpath] = True
 
 if not mib_name_list:
-    imported_mib = ''
-    imported_mib_nb = 0
     context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
