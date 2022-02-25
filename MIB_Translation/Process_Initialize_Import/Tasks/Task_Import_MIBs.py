@@ -128,6 +128,6 @@ imported_mib = ', '.join(mib_name_list)
 imported_mib_nb = len(mib_name_list)
 context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
 
-ret = MSA_API.process_content('ENDED', f'Import OK', context, True)
+ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
 print(ret)
 
