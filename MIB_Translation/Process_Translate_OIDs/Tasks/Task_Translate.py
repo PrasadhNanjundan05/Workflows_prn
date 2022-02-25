@@ -28,15 +28,19 @@ ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
 
+'''
+Build a list of strings to be stored in the file
+'''
 selected_oid_list = {}
 imported_oid_list = context['imported_oids']
 for key, oid_obj in imported_oid_list.items():
     if 'selected' in oid_obj:
         if oid_obj['selected']:
-            oid_obj.pop('selected')
-            selected_oid_list[key] = oid_obj
+            oid_str = '"{}" "{}"'.format(oid['oid_name'], oid['oid'])
 
-context['selected_oid'] = selected_oid_list
+'''
+Generate the file
+'''
 
 '''
 Format of the Task response :
