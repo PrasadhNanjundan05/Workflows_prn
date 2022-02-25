@@ -48,6 +48,10 @@ for mib_path in mibs_path_root_list:
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
 
+if not mib_name_list:
+    ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
+    print(ret)
+
 '''
 Parse the MIBs
     Translate OID names in OIDs thanks to snmptranslate CLI
