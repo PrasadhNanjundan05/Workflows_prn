@@ -93,7 +93,7 @@ and store them in a dictionary
 '''
 leaf_list= {}
 oid = ''
-def get_leaf(tree, oid, leaves):
+def get_leaves(tree, oid, leaves):
     cur_oid = oid
     cur_leaves = leaves
     for key, value in tree.items():
@@ -102,12 +102,12 @@ def get_leaf(tree, oid, leaves):
         else:
             cur_oid = key
         if value:
-            cur_leaves = get_leaf(value, cur_oid, cur_leaves)
+            cur_leaves = get_leaves(value, cur_oid, cur_leaves)
         else:
             cur_leaves[cur_oid] = True
     return cur_leaves
 
-leaf_list = get_leaf(oid_tree, oid, leaf_list)
+leaf_list = get_leaves(oid_tree, oid, leaf_list)
 
 '''
 Build a new dictionary for the WF task
