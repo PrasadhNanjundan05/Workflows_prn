@@ -73,7 +73,7 @@ if proc.returncode == 0:
                 oid_list[oid] = name
 
 '''
-Build a tree to identify leafs
+Build a tree to identify leafs in the dictionary oid_tree
 '''
 oid_tree = {}
 def add_node(tree, oid, name):
@@ -88,8 +88,8 @@ for oid, name in oid_list.items():
     oid_tree = add_node(oid_tree, oid, name)
 
 '''
-Get leafs from the tree
-and keep them in a dictionary
+Get leafs from the tree oid_tree
+and store them in a dictionary
 '''
 leaf_list= {}
 oid = ''
