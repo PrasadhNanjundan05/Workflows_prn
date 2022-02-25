@@ -28,6 +28,8 @@ ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
 
+imported_oid_list = context['imported_oids']
+for 
 '''
 Format of the Task response :
 JSON format : {"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}}
