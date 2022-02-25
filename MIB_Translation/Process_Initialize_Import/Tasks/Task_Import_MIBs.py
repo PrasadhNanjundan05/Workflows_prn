@@ -73,7 +73,7 @@ if proc.returncode == 0:
                 oid_list[oid] = name
 
 '''
-Build a tree to identify leafs in the dictionary oid_tree
+Build a tree  in the dictionary oid_tree to identify leaves
 '''
 oid_tree = {}
 def add_node(tree, oid, name):
@@ -88,7 +88,7 @@ for oid, name in oid_list.items():
     oid_tree = add_node(oid_tree, oid, name)
 
 '''
-Get leafs from the tree oid_tree
+Get leaves from the tree oid_tree
 and store them in a dictionary
 '''
 leaf_list= {}
@@ -111,7 +111,7 @@ leaf_list = get_leaf(oid_tree, oid, leaf_list)
 
 '''
 Build a new dictionary for the WF task
-keep only leafs
+with leaves only
 '''
 imported_oid_list = {}
 i = 0
