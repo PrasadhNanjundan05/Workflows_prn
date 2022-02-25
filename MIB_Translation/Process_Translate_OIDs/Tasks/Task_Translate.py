@@ -29,8 +29,10 @@ ENTER YOUR CODE HERE
 context = Variables.task_call(dev_var)
 
 imported_oid_list = context['imported_oids']
-for imported_oid_list.values()
-    
+for key, oid_obj imported_oid_list.items():
+    if selected in oid_obj:
+        if oid_obj['selected']:
+            
 '''
 Format of the Task response :
 JSON format : {"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}}
