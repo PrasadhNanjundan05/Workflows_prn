@@ -49,7 +49,7 @@ for mib_path in mibs_path_root_list:
                     mibs_path_list[dirpath] = True
 
 if not mib_name_list:
-    ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
+    ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
 
 '''
