@@ -20,6 +20,7 @@ mib_name_list = {}
 
 imported_mib = ''
 imported_mib_nb = 0
+imported_oid_list = {}
 
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
@@ -52,7 +53,7 @@ for mib_path in mibs_path_root_list:
                     mibs_path_list[dirpath] = True
 
 if not mib_name_list:
-    context['imported_oids'] = {}
+    context['imported_oids'] = imported_oid_list
     context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
@@ -122,7 +123,6 @@ leaf_list = get_leaves(oid_tree, oid, leaf_list)
 Build a new dictionary for the WF task
 with leaves only
 '''
-imported_oid_list = {}
 i = 0
 for oid, name in oid_list.items():
     if oid in leaf_list:
