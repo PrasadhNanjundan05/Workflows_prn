@@ -19,7 +19,7 @@ extention_mib_file_list = ('.txt')
 mib_name_list = {}
 
 '''
-Get the list of the MIB names and the list of the path where MIBs are located (recursive search)
+Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_list recursively
     For each file having an extension name in extention_mib_file_list
     get the MIB name and save the result in a dictionary mib_name_list
