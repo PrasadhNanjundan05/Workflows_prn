@@ -29,8 +29,12 @@ ENTER YOUR CODE HERE
 context = Variables.task_call(dev_var)
 
 '''
-Build a list of strings to be stored in the file
+Store selected oid in a temporary file
 '''
+dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
+file_name = 'oid_translated'
+tmp_file = dst_path + file_name + ''.tmp'
+dst_file = dst_path + file_name + ''.txt'
 selected_oid_list = {}
 imported_oid_list = context['imported_oids']
 for key, oid_obj in imported_oid_list.items():
