@@ -38,10 +38,10 @@ dst_file = dst_path + '/' + file_name + '/'+ '.txt'
 
 oid_str = ''
 imported_oid_list = context['imported_oids']
-for key, oid_obj in imported_oid_list.items():
+for oid_obj in imported_oid_list.values():
     if 'selected' in oid_obj:
         if oid_obj['selected']:
-            oid_str += '"{}" "{}"\n'.format(oid['oid_name'], oid['oid'])
+            oid_str += '"{}" "{}"\n'.format(oid_obj['oid_name'], oid_obj['oid'])
 
 with open(tmp_file, 'w') as f:
     f.write(oid_str)
