@@ -35,12 +35,18 @@ dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
 file_name = 'oid_translated'
 tmp_file = dst_path + file_name + ''.tmp'
 dst_file = dst_path + file_name + ''.txt'
-selected_oid_list = {}
+
+oid_str = ''
 imported_oid_list = context['imported_oids']
 for key, oid_obj in imported_oid_list.items():
     if 'selected' in oid_obj:
         if oid_obj['selected']:
-            oid_str = '"{}" "{}"'.format(oid['oid_name'], oid['oid'])
+            oid_str += '"{}" "{}"\n'.format(oid['oid_name'], oid['oid'])
+            
+with open(tmp_file, 'w') as f:
+    f.write(oid_str)
+
+os.rename(tmp_file, dst_file)
 
 '''
 Generate the file
