@@ -42,15 +42,11 @@ for key, oid_obj in imported_oid_list.items():
     if 'selected' in oid_obj:
         if oid_obj['selected']:
             oid_str += '"{}" "{}"\n'.format(oid['oid_name'], oid['oid'])
-            
+
 with open(tmp_file, 'w') as f:
     f.write(oid_str)
 
 os.rename(tmp_file, dst_file)
-
-'''
-Generate the file
-'''
 
 '''
 Format of the Task response :
