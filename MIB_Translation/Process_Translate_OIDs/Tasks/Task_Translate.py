@@ -28,10 +28,13 @@ ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
 
+selected_oid_list = {}
 imported_oid_list = context['imported_oids']
 for key, oid_obj imported_oid_list.items():
     if selected in oid_obj:
         if oid_obj['selected']:
+            oid_obj.pop('selected')
+            selected_oid_list[key] = oid_obj
             
 '''
 Format of the Task response :
