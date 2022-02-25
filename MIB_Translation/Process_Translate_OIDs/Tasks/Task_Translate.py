@@ -33,8 +33,8 @@ Store selected oid in a file
 '''
 dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
 file_name = 'oid_translated'
-tmp_file = dst_path + file_name + ''.tmp'
-dst_file = dst_path + file_name + ''.txt'
+tmp_file = dst_path + '/' + file_name + '/' + '.tmp'
+dst_file = dst_path + '/' + file_name + '/'+ '.txt'
 
 oid_str = ''
 imported_oid_list = context['imported_oids']
