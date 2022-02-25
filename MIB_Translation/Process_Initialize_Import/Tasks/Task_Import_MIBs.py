@@ -20,7 +20,7 @@ mib_name_list = {}
 
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
-    Walk through the mib_path_list recursively
+    Walk through the mib_path_root_list recursively
     For each file having an extension name in extention_mib_file_list
     get the MIB name and save the result in a dictionary mib_name_list
     except for standard mibs (standard_mibs_path)
