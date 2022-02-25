@@ -51,8 +51,8 @@ for mib_path in mibs_path_root_list:
 '''
 Parse the MIBs
     Translate OID names in OIDs thanks to snmptranslate CLI
-    build the dictionary oid_list with key = oid, value = oid name
-    to ensure unicity of the oid
+    Build the dictionary oid_list with key = oid, value = oid name
+    to ensure the uniqueness of the oid
 '''
 oid_list = {}
 mib_path_str = ':'.join(mibs_path_list)
