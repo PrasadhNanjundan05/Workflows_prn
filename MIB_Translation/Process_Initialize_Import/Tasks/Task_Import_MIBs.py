@@ -81,8 +81,9 @@ if proc.returncode == 0:
     if result != None:
         # result is a list of tuple, each tuple is a (oid_name, oid) pair
         for name, oid in result:
-            if not oid in oid_list:
-                oid_list[oid] = name
+            if not oid.startswith(oid_startswith_filter_list):
+                if not oid in oid_list:
+                    oid_list[oid] = name
 
 '''
 Build a tree  in the dictionary oid_tree to identify leaves
