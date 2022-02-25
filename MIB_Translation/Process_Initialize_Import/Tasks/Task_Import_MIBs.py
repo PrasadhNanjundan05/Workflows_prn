@@ -24,7 +24,7 @@ Get the list of the MIB names and the list of the path where MIBs are located
     For each file having an extension name in extention_mib_file_list
     get the MIB name and save the result in a dictionary mib_name_list
     except for standard mibs (standard_mibs_path)
-    Build the list of path where MIBs are located
+    Path where MIBs are located are stored in the dictionary mibs_path_list
 '''
 pattern = '^\s*([^\s]+)\s+DEFINITIONS\s+::= BEGIN'
 regc = re.compile(pattern)
@@ -50,7 +50,7 @@ for mib_path in mibs_path_root_list:
 
 '''
 Parse the MIBs
-    translate OID names in OIDs thanks to snmptranslate CLI
+    Translate OID names in OIDs thanks to snmptranslate CLI
     build the dictionary oid_list with key = oid, value = oid name
     to ensure unicity of the oid
 '''
