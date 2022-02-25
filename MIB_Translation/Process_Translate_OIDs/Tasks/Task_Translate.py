@@ -29,7 +29,7 @@ ENTER YOUR CODE HERE
 context = Variables.task_call(dev_var)
 
 '''
-Store selected oid in a temporary file
+Store selected oid in a file
 '''
 dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
 file_name = 'oid_translated'
