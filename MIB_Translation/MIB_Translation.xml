@@ -40,7 +40,7 @@
   <information>
     <icon/>
     <description>Translation of MIB files</description>
-    <displayField>service_id</displayField>
+    <displayField>import_summary</displayField>
     <serviceTaskType>python</serviceTaskType>
     <order>10000</order>
     <visibility>5</visibility>
