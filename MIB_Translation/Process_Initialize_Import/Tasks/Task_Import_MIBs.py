@@ -93,19 +93,19 @@ and store them in a dictionary
 '''
 leaf_list= {}
 oid = ''
-def get_leaf(tree, oid, leafs):
+def get_leaf(tree, oid, leaves):
     cur_oid = oid
-    cur_leafs = leafs
+    cur_leaves = leaves
     for key, value in tree.items():
         if oid:
             cur_oid = oid + '.' + key
         else:
             cur_oid = key
         if value:
-            cur_leafs = get_leaf(value, cur_oid, cur_leafs)
+            cur_leaves = get_leaf(value, cur_oid, cur_leaves)
         else:
-            cur_leafs[cur_oid] = True
-    return cur_leafs
+            cur_leaves[cur_oid] = True
+    return cur_leaves
 
 leaf_list = get_leaf(oid_tree, oid, leaf_list)
 
