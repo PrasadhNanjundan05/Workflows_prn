@@ -18,6 +18,8 @@ mibs_path_list = {} # use a dictionary to have each path once
 extention_mib_file_list = ('.txt')
 mib_name_list = {}
 
+oid_startswith_filter_list = ('0.')
+
 imported_mib = ''
 imported_mib_nb = 0
 imported_oid_list = {}
