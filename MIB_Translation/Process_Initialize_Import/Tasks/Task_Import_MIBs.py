@@ -126,14 +126,10 @@ leaf_list = get_leaves(oid_tree, oid, leaf_list)
 Build a new dictionary for the WF task
 with leaves only
 '''
-i = 0
 for oid, name in oid_list.items():
     if oid in leaf_list:
-        imported_oid_list[i] = {}
-        imported_oid_list[i]['oid'] = oid
-        imported_oid_list[i]['oid_name'] = name
-        imported_oid_list[i]['selected'] = False
-        i += 1
+        imported_oid_list = []
+        imported_oid_list.append = {'oid': oid, 'oid_name': name, 'selected': False}
 
 context['imported_oids'] = imported_oid_list
 
