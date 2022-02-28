@@ -132,6 +132,7 @@ for oid, name in oid_list.items():
         imported_oid_list[i] = {}
         imported_oid_list[i]['oid'] = oid
         imported_oid_list[i]['oid_name'] = name
+        imported_oid_list[i]['selected'] = False
         i += 1
 
 context['imported_oids'] = imported_oid_list
