@@ -38,7 +38,7 @@ dst_file = dst_path + '/' + file_name + '/'+ '.txt'
 
 oid_str = ''
 imported_oid_list = context['imported_oids']
-with open('/tmp/A', 'w')  as f
+with open('/tmp/A', 'w')  as f:
 	print(imported_oid_list, file = f)
 
 for oid_obj in imported_oid_list.values():
