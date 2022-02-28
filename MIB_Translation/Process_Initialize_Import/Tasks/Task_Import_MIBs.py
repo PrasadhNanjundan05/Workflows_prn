@@ -129,7 +129,7 @@ with leaves only
 for oid, name in oid_list.items():
     if oid in leaf_list:
         imported_oid_list = []
-        imported_oid_list.append = {'oid': oid, 'oid_name': name, 'selected': False}
+        imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': False})
 
 context['imported_oids'] = imported_oid_list
 
