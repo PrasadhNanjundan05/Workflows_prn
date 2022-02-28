@@ -22,8 +22,8 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="Process/workflows/MIB_Translation/Process_Initialize_Import/Tasks/Task_Import_MIBs.py">
-      <processPath></processPath>
+    <task name="Task_Import_MIBs.py">
+      <processPath>/opt/fmc_repository/Process/workflows/MIB_Translation/Process_Initialize_Import/Tasks</processPath>
       <displayName>Import MIBs</displayName>
     </task>
   </process>
