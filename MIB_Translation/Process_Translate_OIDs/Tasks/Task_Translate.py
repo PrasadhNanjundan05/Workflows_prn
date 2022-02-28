@@ -43,7 +43,7 @@ imported_oid_list = context['imported_oids']
 
 for oid_obj in imported_oid_list.values():
     if 'selected' in oid_obj:
-        if oid_obj['selected']:
+        if oid_obj['selected'] == 'True':
             oid_str += '"{}" "{}"\n'.format(oid_obj['oid_name'], oid_obj['oid'])
 
 with open(tmp_file, 'w') as f:
