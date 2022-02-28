@@ -17,7 +17,7 @@ dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
 if not os.path.exists(dst_path):
     os.mkdir(dst_path)
 
-file_name = 'oid_translated'
+file_name = 'oid_translated_' + context['SERVICEINSTANCEID']
 tmp_file = dst_path + file_name + '.tmp'
 dst_file = dst_path + file_name + '.txt'
 
