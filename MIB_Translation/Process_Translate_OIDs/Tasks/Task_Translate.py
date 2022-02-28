@@ -28,7 +28,7 @@ ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
 with open('/tmp/A', 'w')  as f:
-	print(context, file = f)
+    print(context, file = f)
 '''
 Store selected oid in a file
 '''
