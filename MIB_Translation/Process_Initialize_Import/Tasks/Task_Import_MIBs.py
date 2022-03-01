@@ -18,6 +18,10 @@ if not 'mibs_name' in context:
      ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
      print(ret)
 
+if not 'mibs_path' in context:
+     ret = MSA_API.process_content('ENDED', 'No path where to import MIBs', context, True)
+     print(ret)
+
 selected_mibs_name = []
 for mibs in context['mibs_name']:
     if 'selected' in mibs and mibs['selected'] == True:
