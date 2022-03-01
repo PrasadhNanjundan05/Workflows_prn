@@ -16,7 +16,7 @@ mibs_path_root_list = [standard_mibs_path, import_mibs_path]
 mibs_path_list = {} # use a dictionary to have each path once
 
 extention_mib_file_list = ('.txt')
-mib_name_list = {}
+mibs_name_list = {}
 
 oid_startswith_filter_list = ('0.')
 
@@ -28,33 +28,40 @@ imported_oid_list = {}
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
     For each file having an extension name in extention_mib_file_list
-    get the MIB name and save the result in a dictionary mib_name_list
+    get the MIB name and save the result in a dictionary mibs_name_list
     except for standard mibs (standard_mibs_path)
     Path where MIBs are located are stored in the dictionary mibs_path_list
 '''
 pattern = '^\s*([^\s]+)\s+DEFINITIONS\s+::= BEGIN'
 regc = re.compile(pattern)
-def build_mib_mapping(mib_name_list, dirpath, fname):
+def build_mib_mapping(mibs_name_list, dirpath, fname):
     mib_file = dirpath + os.path.sep + fname
     with open(mib_file, 'r') as f:
         for line in f:
             result = regc.search(line)
             if result != None:
                 mib_name = result.group(1)
-                mib_name_list[mib_name] = fname
+                mibs_name_list[mib_name] = fname
                 break
-    return mib_name_list
+    return mibs_name_list
+
+'''
+Convert mibs_name_list dictionary in list for UI
+'''
+mib_name = []
+
+context['mib_name'] = 
 
 for mib_path in mibs_path_root_list:
     for dirpath, dirs, files in os.walk(mib_path):
         for fname in files:
             if fname.endswith(extention_mib_file_list):
                 if mib_path != standard_mibs_path:
-                    mib_name_list = build_mib_mapping(mib_name_list, dirpath, fname)
+                    mibs_name_list = build_mib_mapping(mibs_name_list, dirpath, fname)
                 if not dirpath in mibs_path_list:
                     mibs_path_list[dirpath] = True
 
-if not mib_name_list:
+if not mibs_name_list:
     context['imported_oids'] = imported_oid_list
     context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
@@ -68,7 +75,7 @@ Parse the MIBs
 '''
 oid_list = {}
 mib_path_str = ':'.join(mibs_path_list)
-mib_name_str = ':'.join(mib_name_list)
+mib_name_str = ':'.join(mibs_name_list)
 cmd = ['/usr/bin/snmptranslate', '-Pu', '-Tz', '-M', mib_path_str, '-m', mib_name_str]
 # for python >= 3.7 replace universal_newlines by text
 proc = subprocess.run(cmd, stdout = subprocess.PIPE, stderr = subprocess.STDOUT, universal_newlines = True)
@@ -133,8 +140,8 @@ for oid, name in oid_list.items():
 
 context['imported_oids'] = imported_oid_list
 
-imported_mib = ', '.join(mib_name_list)
-imported_mib_nb = len(mib_name_list)
+imported_mib = ', '.join(mibs_name_list)
+imported_mib_nb = len(mibs_name_list)
 context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
 
 ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
