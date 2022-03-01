@@ -14,7 +14,6 @@ context = Variables.task_call(dev_var)
 
 oid_startswith_filter_list = ('0.')
 
-
 if not 'mibs_name' in context:
      ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
      print(ret)
