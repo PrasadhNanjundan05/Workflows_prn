@@ -12,14 +12,8 @@ dev_var.add('mibs_name.0.selected', var_type='Boolean')
 
 context = Variables.task_call(dev_var)
 
-extention_mib_file_list = ('.txt')
-mibs_name_dict = {}
-
 oid_startswith_filter_list = ('0.')
 
-imported_mib = ''
-imported_mib_nb = 0
-imported_oid_list = {}
 
 if not 'mibs_name' in context:
      ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
