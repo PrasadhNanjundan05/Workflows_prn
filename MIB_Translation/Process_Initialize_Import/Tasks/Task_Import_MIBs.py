@@ -45,8 +45,6 @@ def build_mib_mapping(mibs_name_list, dirpath, fname):
                 break
     return mibs_name_list
 
-
-
 for mib_path in mibs_path_root_list:
     for dirpath, dirs, files in os.walk(mib_path):
         for fname in files:
