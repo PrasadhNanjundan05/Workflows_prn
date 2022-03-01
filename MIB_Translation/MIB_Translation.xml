@@ -10,17 +10,17 @@
   </variables>
   <example/>
   <process name="Process/workflows/MIB_Translation/Process_Initialize_Import">
-    <displayName>Initialize Import</displayName>
+    <displayName>1 - Initialize Import</displayName>
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="Task_Import_MIBs.py">
+    <task name="Task_Initialization__collect_MIB_name_.py">
       <processPath>/opt/fmc_repository/Process/workflows/MIB_Translation/Process_Initialize_Import/Tasks</processPath>
-      <displayName>Import MIBs</displayName>
+      <displayName>Initialization (collect MIB name)</displayName>
     </task>
   </process>
   <process name="Process/workflows/MIB_Translation/Process_Re-import_MIBs">
-    <displayName>Re-import MIBs</displayName>
+    <displayName>2 - (Re)import MIBs</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
