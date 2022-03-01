@@ -21,12 +21,6 @@ mibs_path_list = {} # use a dictionary to have each path once
 extention_mib_file_list = ('.txt')
 mibs_name_dict = {}
 
-oid_startswith_filter_list = ('0.')
-
-imported_mib = ''
-imported_mib_nb = 0
-imported_oid_list = {}
-
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
