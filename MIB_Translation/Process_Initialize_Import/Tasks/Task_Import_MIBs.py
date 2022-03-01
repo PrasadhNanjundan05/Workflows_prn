@@ -63,6 +63,11 @@ if not mibs_name_list:
     print(ret)
 
 #context['mibs_name'] = mibs_name_list
+dev_var.add('mibs_name.0.name', var_type='String')
+dev_var.add('mibs_name.0.selected', var_type='Boolean')
+
+context = Variables.task_call(dev_var)
+
 ret = MSA_API.process_content('PAUSE', 'Select MIBs to import', context, True)
 print(ret)
 
