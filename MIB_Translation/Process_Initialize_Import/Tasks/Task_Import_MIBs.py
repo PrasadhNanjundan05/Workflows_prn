@@ -102,7 +102,7 @@ context['imported_oids'] = imported_oid_list
 
 imported_mib = ', '.join(selected_mibs_name)
 if len(imported_mib) > 64:
-    imported_mib = imported_mib[0:64] + '...'
+    imported_mib = imported_mib[:64] + '...'
 
 imported_mib_nb = len(selected_mibs_name)
 context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
