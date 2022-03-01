@@ -64,7 +64,7 @@ if not mibs_name_dict:
     print(ret)
 
 '''
-    Convert mibs_name_dict dictionary to a list to store in the context
+Convert mibs_name_dict dictionary to a list to store in the context
 '''
 mibs_name_list = []
 for mib_name in mibs_name_dict.keys():
