@@ -62,7 +62,7 @@ if not mibs_name_list:
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
 
-context['mibs_name'] = mibs_name_list
+#context['mibs_name'] = mibs_name_list
 ret = MSA_API.process_content('PAUSE', 'Select MIBs to import', context, True)
 print(ret)
 
