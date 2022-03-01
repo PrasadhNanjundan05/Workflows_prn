@@ -7,6 +7,8 @@ from msa_sdk.msa_api import MSA_API
 
 dev_var = Variables()
 dev_var.add('import_mibs_path', var_type='String')
+dev_var.add('mibs_name.0.name', var_type='String')
+dev_var.add('mibs_name.0.selected', var_type='Boolean')
 
 context = Variables.task_call(dev_var)
 import_mibs_path = context['import_mibs_path']
@@ -61,8 +63,6 @@ if not mibs_name_list:
     print(ret)
 
 context['mibs_name'] = mibs_name_list
-dev_var.add('mibs_name.0.name', var_type='String')
-dev_var.add('mibs_name.0.selected', var_type='Boolean')
 ret = MSA_API.process_content('PAUSE', 'Select MIBs to import', context, True)
 print(ret)
 
