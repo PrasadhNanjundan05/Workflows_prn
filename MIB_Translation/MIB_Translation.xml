@@ -30,7 +30,7 @@
     </task>
   </process>
   <process name="Process/workflows/MIB_Translation/Process_Translate_OIDs">
-    <displayName>Translate OIDs</displayName>
+    <displayName>3 - Translate OIDs</displayName>
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
