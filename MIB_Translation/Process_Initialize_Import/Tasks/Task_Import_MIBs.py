@@ -60,9 +60,10 @@ if not mibs_name_list:
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
 
-#context['mibs_name'] = mibs_name_list
+context['mibs_name'] = mibs_name_list
 #dev_var.add('mibs_name.0.name', var_type='String')
 #dev_var.add('mibs_name.0.selected', var_type='Boolean')
+ret = MSA_API.process_content('PAUSE', 'Select MIBs to import', context, True)
 
 '''
 Parse the MIBs
