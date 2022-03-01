@@ -25,19 +25,6 @@ if not 'mibs_name' in context:
      ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
      print(ret)
 
-    '''
-    Convert mibs_name_dict dictionary to a list to store in the context
-    for a selection
-    '''
-    mibs_name_list = []
-    for mib_name in mibs_name_dict.keys():
-        mibs_name_list.append({'name': mib_name, 'selected' : False})
-
-    context['mibs_name'] = mibs_name_list
-
-    ret = MSA_API.process_content('PAUSE', 'Select MIBs to import', context, True)
-    print(ret)
-
 selected_mibs_name = []
 for mibs in context['mibs_name']:
     if 'selected' in mibs and mibs['selected'] == True:
@@ -50,7 +37,7 @@ Parse the MIBs
     to ensure the uniqueness of the oid
 '''
 oid_list = {}
-mib_path_str = ':'.join(mibs_path_list)
+mib_path_str = ':'.join(context['mibs_path'])
 mib_name_str = ':'.join(selected_mibs_name)
 cmd = ['/usr/bin/snmptranslate', '-Pu', '-Tz', '-M', mib_path_str, '-m', mib_name_str]
 # for python >= 3.7 replace universal_newlines by text
