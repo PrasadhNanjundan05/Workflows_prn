@@ -61,6 +61,8 @@ if not mibs_name_list:
     print(ret)
 
 context['mibs_name'] = mibs_name_list
+dev_var.add('mibs_name.0.name', var_type='String')
+dev_var.add('mibs_name.0.selected', var_type='Boolean')
 
 '''
 Parse the MIBs
