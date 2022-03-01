@@ -34,6 +34,6 @@ with open(tmp_file, 'w') as f:
 
 os.rename(tmp_file, dst_file)
 
-ret = MSA_API.process_content('ENDED', f'Task OK\nFile created: {dst_file}', context, True)
+ret = MSA_API.process_content('ENDED', f'MIB translation completed\nFile created: {dst_file}', context, True)
 print(ret)
 
