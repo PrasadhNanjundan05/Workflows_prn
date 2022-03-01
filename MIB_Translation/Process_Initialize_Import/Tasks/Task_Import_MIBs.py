@@ -16,7 +16,7 @@ mibs_path_root_list = [standard_mibs_path, import_mibs_path]
 mibs_path_list = {} # use a dictionary to have each path once
 
 extention_mib_file_list = ('.txt')
-mibs_name_list = {}
+mibs_name_list = []
 
 oid_startswith_filter_list = ('0.')
 
@@ -28,7 +28,7 @@ imported_oid_list = {}
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
     For each file having an extension name in extention_mib_file_list
-    get the MIB name and save the result in a dictionary mibs_name_list
+    get the MIB name and save the result in the list mibs_name_list
     except for standard mibs (standard_mibs_path)
     Path where MIBs are located are stored in the dictionary mibs_path_list
 '''
@@ -41,16 +41,11 @@ def build_mib_mapping(mibs_name_list, dirpath, fname):
             result = regc.search(line)
             if result != None:
                 mib_name = result.group(1)
-                mibs_name_list[mib_name] = fname
+                mibs_name_list.append(mib_name)
                 break
     return mibs_name_list
 
-'''
-Convert mibs_name_list dictionary in list for UI
-'''
-mib_name = []
 
-context['mib_name'] = 
 
 for mib_path in mibs_path_root_list:
     for dirpath, dirs, files in os.walk(mib_path):
@@ -66,6 +61,8 @@ if not mibs_name_list:
     context['import_summary'] = f'Total {imported_mib_nb} : {imported_mib}'
     ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
     print(ret)
+
+context['mibs_name'] = mibs_name_list
 
 '''
 Parse the MIBs
