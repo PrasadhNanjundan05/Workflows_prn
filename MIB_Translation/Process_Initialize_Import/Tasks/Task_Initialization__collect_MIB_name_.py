@@ -51,11 +51,12 @@ for mib_path in mibs_path_root_list:
 if not mibs_name_dict:
     context['imported_oids'] = []
     context['import_summary'] = 'Total 0'
-    ret = MSA_API.process_content('ENDED', 'No MIB to import', context, True)
+    ret = MSA_API.process_content('ENDED', 'No MIB found', context, True)
     print(ret)
 
 '''
 Convert mibs_name_dict dictionary to a list to store in the context
+for selection
 '''
 mibs_name_list = []
 for mib_name in mibs_name_dict.keys():
@@ -64,5 +65,5 @@ for mib_name in mibs_name_dict.keys():
 context['mibs_name'] = mibs_name_list
 context['mibs_path'] = mibs_path_list
 
-ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
+ret = MSA_API.process_content('ENDED', 'Initialization completed', context, True)
 print(ret)
