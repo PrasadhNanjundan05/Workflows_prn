@@ -62,6 +62,7 @@ for mib_name in mibs_name_dict.keys():
     mibs_name_list.append({'name': mib_name, 'selected' : False})
 
 context['mibs_name'] = mibs_name_list
+context['mibs_path'] = mibs_path_list
 
 ret = MSA_API.process_content('ENDED', 'Import OK', context, True)
 print(ret)
