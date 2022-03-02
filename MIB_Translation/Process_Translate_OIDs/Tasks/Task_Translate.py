@@ -13,11 +13,7 @@ context = Variables.task_call(dev_var)
 '''
 Store selected oid in a file
 '''
-dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
-if not os.path.exists(dst_path):
-    os.mkdir(dst_path)
-
-file_name = 'oid_translated_' + context['SERVICEINSTANCEID']
+file_name = context['translated_oid_file_name_without_ext']
 tmp_file = dst_path + file_name + '.tmp'
 dst_file = dst_path + file_name + '.txt'
 
