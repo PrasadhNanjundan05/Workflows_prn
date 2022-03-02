@@ -114,7 +114,7 @@ for oid, name in oid_list.items():
         	true_name = name
         imported_oid_list.append({'oid': oid, 'oid_name': true_name, 'selected': False})
 
-for oid,name translated_oid_list.items():
+for oid, name in translated_oid_list.items():
     if not oid in leaf_list:
         imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': False})
 
