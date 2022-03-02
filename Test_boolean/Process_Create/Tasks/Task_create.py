@@ -9,7 +9,7 @@ test_list.append({'select': False, 'name': 'A'})
 test_list.append({'select': False, 'name': 'B'})
 test_list.append({'select': False, 'name': 'C'})
 
-context['test_lis'] = test_list
+context['test_list'] = test_list
 
 ret = MSA_API.process_content('ENDED', 'Create OK', context, True)
 print(ret)
