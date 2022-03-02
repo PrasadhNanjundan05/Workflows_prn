@@ -3,6 +3,7 @@ from msa_sdk.msa_api import MSA_API
 
 dev_var = Variables()
 dev_var.add('array.0.select', var_type='Boolean')
+dev_var.add('array.0.test_list', var_type='String')
 
 context = Variables.task_call(dev_var)
 
