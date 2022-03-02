@@ -94,7 +94,7 @@ Get existing translated OIDs if any
 translated_oid_list = {}
 dst_file = context['translated_oid_file_name']
 try:
-    with open(tmp_file, 'r') as f:
+    with open(dst_file, 'r') as f:
         for line in f:
             oid, name = line.split()
             translated_oid_list[oid] = name
