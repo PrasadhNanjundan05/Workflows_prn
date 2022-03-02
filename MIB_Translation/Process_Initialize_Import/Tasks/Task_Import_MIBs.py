@@ -103,11 +103,19 @@ except:
 
 '''
 Build a new dictionary for the WF task
-with leaves only
+with leaves only and already translated OIDs if any
 '''
 imported_oid_list = []
 for oid, name in oid_list.items():
     if oid in leaf_list:
+        if oid in translated_oid_list:
+            true_name = translated_oid_list[oid]
+        else:
+        	true_name = name
+        imported_oid_list.append({'oid': oid, 'oid_name': true_name, 'selected': False})
+
+for oid,name translated_oid_list.items():
+    if not oid in leaf_list:
         imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': False})
 
 context['imported_oids'] = imported_oid_list
