@@ -109,14 +109,13 @@ imported_oid_list = []
 for oid, name in oid_list.items():
     if oid in leaf_list:
         if oid in translated_oid_list:
-            true_name = translated_oid_list[oid]
+            imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': True})
         else:
-        	true_name = name
-        imported_oid_list.append({'oid': oid, 'oid_name': true_name, 'selected': False})
+            imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': False})
 
 for oid, name in translated_oid_list.items():
     if not oid in leaf_list:
-        imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': False})
+        imported_oid_list.append({'oid': oid, 'oid_name': name, 'selected': True})
 
 context['imported_oids'] = imported_oid_list
 
