@@ -27,7 +27,8 @@ if not os.path.exists(dst_path):
     os.mkdir(dst_path)
 
 file_name = 'oid_translated_' + context['SERVICEINSTANCEID']
-context['translated_oid_file_name_without_ext'] = file_name
+dst_file = dst_path + file_name + '.txt'
+context['translated_oid_file_name_without_ext'] = dst_file
 
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
