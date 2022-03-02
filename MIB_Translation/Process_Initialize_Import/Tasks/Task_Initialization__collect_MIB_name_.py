@@ -29,7 +29,6 @@ if not os.path.exists(dst_path):
 file_name = 'oid_translated_' + context['SERVICEINSTANCEID']
 context['translated_oid_file_name_without_ext'] = file_name
 
-
 '''
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
