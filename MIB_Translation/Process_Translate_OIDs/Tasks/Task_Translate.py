@@ -11,9 +11,8 @@ context = Variables.task_call(dev_var)
 '''
 Store selected oid in a file
 '''
-file_name = context['translated_oid_file_name_without_ext']
-tmp_file = dst_path + file_name + '.tmp'
-dst_file = dst_path + file_name + '.txt'
+dst_file = context['translated_oid_file_name']
+tmp_file = dst_file + '.tmp'
 
 oid_str = ''
 imported_oid_list = context['imported_oids']
