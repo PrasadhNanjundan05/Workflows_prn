@@ -92,6 +92,8 @@ leaf_list = get_leaves(oid_tree, oid, leaf_list)
 Get existing translated OIDs if any
 '''
 dst_file = context['translated_oid_file_name']
+with open(tmp_file, 'r') as f:
+    f.read(oid_str)
 
 '''
 Build a new dictionary for the WF task
