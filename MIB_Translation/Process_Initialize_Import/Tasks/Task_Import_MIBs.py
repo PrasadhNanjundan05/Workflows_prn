@@ -96,6 +96,8 @@ dst_file = context['translated_oid_file_name']
 try:
     with open(tmp_file, 'r') as f:
         for line in f:
+            oid, name = line.split()
+            translated_oid_list[oid] = name
 except:
     pass
 
