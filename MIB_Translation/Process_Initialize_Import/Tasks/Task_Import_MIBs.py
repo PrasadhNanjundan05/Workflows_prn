@@ -90,6 +90,10 @@ def get_leaves(tree, oid, leaves):
 leaf_list = get_leaves(oid_tree, oid, leaf_list)
 
 '''
+Get existing translated OIDs if any
+'''
+
+'''
 Build a new dictionary for the WF task
 with leaves only
 '''
