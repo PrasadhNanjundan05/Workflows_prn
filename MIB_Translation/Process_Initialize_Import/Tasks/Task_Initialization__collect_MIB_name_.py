@@ -19,6 +19,18 @@ extention_mib_file_list = ('.txt')
 mibs_name_dict = {}
 
 '''
+Filename without extension to store translated OIDs
+Will be used in Import and Translate tasks
+'''
+dst_path = '/opt/fmc_repository/Datafiles/MIBs_translation/'
+if not os.path.exists(dst_path):
+    os.mkdir(dst_path)
+
+file_name = 'oid_translated_' + context['SERVICEINSTANCEID']
+context['translated_oid_file_name_without_ext'] = file_name
+
+
+'''
 Get the list of the MIB names and the list of the path where MIBs are located
     Walk through the mib_path_root_list recursively
     For each file having an extension name in extention_mib_file_list
