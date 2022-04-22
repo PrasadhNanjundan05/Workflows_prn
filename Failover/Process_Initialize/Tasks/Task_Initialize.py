@@ -6,6 +6,7 @@ dev_var.add('device_id', var_type='Device')
 dev_var.add('Failover.0.object_id', var_type='String')
 
 context = Variables.task_call(dev_var)
+context['Failover']['0']['object_id'] = 'ip'
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
 print(ret)
