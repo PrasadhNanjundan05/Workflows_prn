@@ -18,8 +18,11 @@ dev_var.add('device_id', var_type='Device')
 
 context = Variables.task_call(dev_var)
 
+device_id = context['device_id']
+devicelongid = device_id[3:]
+
 conf_backup = ConfBackup()
-conf_backup.backup()
+conf_backup.backup(devicelongid)
 
 '''
 Format of the Task response :
