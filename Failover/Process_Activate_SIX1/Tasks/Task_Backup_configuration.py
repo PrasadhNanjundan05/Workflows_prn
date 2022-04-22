@@ -26,7 +26,6 @@ conf_backup.backup(devicelongid)
 result = 'RUNNING'
 while result == 'RUNNING':
     result = conf_backup.backup_status(devicelongid)
-    context['result'] = result
 
 '''
 Format of the Task response :
@@ -46,6 +45,9 @@ NOTE : For 'wo_newparams', always pass "context" [whether wo_status is ENDED/FAI
 The response "ret" should be echoed from the Task "print(ret)" which is read by Orchestration Engine
 In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
 '''
-ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
+if result == 'ENDED':
+    ret = MSA_API.process_content('ENDED', 'Backup done', context, True)
+else:
+    ret = MSA_API.process_content('FAILED', 'Backup failed', context, True)
 print(ret)
 
