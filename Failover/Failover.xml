@@ -29,6 +29,10 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
+    <task name="Failover_CREATE.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Activate_SIX2/Tasks</processPath>
+      <displayName>Create route</displayName>
+    </task>
   </process>
   <information>
     <icon/>
