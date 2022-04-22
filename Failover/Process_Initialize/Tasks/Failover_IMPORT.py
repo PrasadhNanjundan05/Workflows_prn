@@ -16,7 +16,7 @@ device_id = context['device_id']
 # extract the database ID
 devicelongid = device_id[3:]
 
-orch = Orchestration(devicelongid)
+orch = Orchestration(context['UBIQUBEID'])
 ret = orch.list_service_instances()
 context['service_instances'] = ret
 
