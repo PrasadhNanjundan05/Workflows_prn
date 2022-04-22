@@ -43,6 +43,16 @@
       <displayName>Get state</displayName>
     </task>
   </process>
+  <process name="Process/workflows/Failover/Process_Get_State">
+    <displayName>Get State</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
+      <processPath></processPath>
+      <displayName>Get state</displayName>
+    </task>
+  </process>
   <information>
     <icon/>
     <description/>
