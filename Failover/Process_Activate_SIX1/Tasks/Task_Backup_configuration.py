@@ -14,7 +14,7 @@ conf_backup = ConfBackup()
 conf_backup.backup(devicelongid)
 result = 'RUNNING'
 retry = 100
-while result == 'RUNNING' && retry > 0:
+while result == 'RUNNING' and retry > 0:
     sleep(1)
     result = conf_backup.backup_status(devicelongid)
     retry--
