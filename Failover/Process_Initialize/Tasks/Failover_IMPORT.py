@@ -2,6 +2,7 @@ import json
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
+from ma_sdk.orchestration import Orchestration
 
 # List all the parameters required by the task
 dev_var = Variables()
@@ -14,6 +15,10 @@ device_id = context['device_id']
 
 # extract the database ID
 devicelongid = device_id[3:]
+
+orch = Orchestration(devicelongid)
+ret = orch.list_service_instances()
+context['service_instances'] = ret
 
 # build the Microservice JSON params
 #{"Gateway":"0"}
