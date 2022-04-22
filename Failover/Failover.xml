@@ -10,13 +10,9 @@
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="Task_Initialize.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Initialize/Tasks</processPath>
-      <displayName>Initialize</displayName>
-    </task>
-    <task name="Failover_IMPORT.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Initialize/Tasks</processPath>
-      <displayName>Import route</displayName>
+    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
+      <processPath></processPath>
+      <displayName>Get state</displayName>
     </task>
   </process>
   <process name="Process/workflows/Failover/Process_Activate_SIX1">
@@ -28,6 +24,10 @@
       <processPath></processPath>
       <displayName>Create route</displayName>
     </task>
+    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
+      <processPath></processPath>
+      <displayName>Get state</displayName>
+    </task>
   </process>
   <process name="Process/workflows/Failover/Process_Activate_SIX2">
     <displayName>Activate SIX2</displayName>
@@ -37,6 +37,10 @@
     <task name="Process/workflows/Failover/Process_Activate_SIX1/Tasks/Failover_DELETE.py">
       <processPath></processPath>
       <displayName>Delete route</displayName>
+    </task>
+    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
+      <processPath></processPath>
+      <displayName>Get state</displayName>
     </task>
   </process>
   <information>
