@@ -1,8 +1,6 @@
-'''
-Visit http://[YOUR_MSA_URL]/msa_sdk/ to see what you can import.
-'''
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
+from msa_sdk.conf_backup import ConfBackup
 
 '''
 List all the parameters required by the task
@@ -16,20 +14,12 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
-dev_var.add('var_name', var_type='String')
-dev_var.add('var_name2', var_type='Integer')
+dev_var.add('device_id', var_type='Device')
 
-'''
-context => Service Context variable per Service Instance
-All the user-inputs of Tasks are automatically stored in context
-Also, any new variables should be stored in context which are used across Service Instance
-The variables stored in context can be used across all the Tasks and Processes of a particular Service
-Update context array [add/update/delete variables] as per requirement
-
-ENTER YOUR CODE HERE
-'''
 context = Variables.task_call(dev_var)
-context['var_name2'] = int(context['var_name2']) + 1
+
+conf_backup = ConfBackup()
+conf_backup.backup()
 
 '''
 Format of the Task response :
