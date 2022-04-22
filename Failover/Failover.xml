@@ -42,13 +42,13 @@
       <processPath></processPath>
       <displayName>Delete route</displayName>
     </task>
-    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
-      <processPath></processPath>
-      <displayName>Get state</displayName>
-    </task>
     <task name="Process/workflows/Failover/Process_Activate_SIX1/Tasks/Task_Backup_configuration.py">
       <processPath></processPath>
       <displayName>Backup configuration</displayName>
+    </task>
+    <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
+      <processPath></processPath>
+      <displayName>Get state</displayName>
     </task>
   </process>
   <process name="Process/workflows/Failover/Process_Get_State">
