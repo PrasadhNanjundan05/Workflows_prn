@@ -6,7 +6,6 @@ from msa_sdk.order import Order
 # List all the parameters required by the task
 dev_var = Variables()
 dev_var.add('device_id', var_type='Device')
-dev_var.add('Failover.object_id', var_type='String')
 
 context = Variables.task_call(dev_var)
 
