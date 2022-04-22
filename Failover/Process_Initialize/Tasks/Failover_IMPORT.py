@@ -17,7 +17,7 @@ device_id = context['device_id']
 devicelongid = device_id[3:]
 
 orch = Orchestration(context['UBIQUBEID'])
-ret = orch.list_service_instances()
+ret = orch.get_service_status_by_id(context['SERVICEINSTANCEID'])
 context['service_instances'] = ret
 
 # build the Microservice JSON params
