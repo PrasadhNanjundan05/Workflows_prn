@@ -35,7 +35,7 @@ if order.response.ok:
     if content['message']:
         # the route exists
         context['state'] = 'SIX1 is active'
-    else
+    else:
         context['state'] = 'SIX2 is active'
     
     ret = MSA_API.process_content('ENDED',
