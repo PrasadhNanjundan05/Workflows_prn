@@ -46,6 +46,10 @@
       <processPath></processPath>
       <displayName>Get state</displayName>
     </task>
+    <task name="Process/workflows/Failover/Process_Activate_SIX1/Tasks/Task_Backup_configuration.py">
+      <processPath></processPath>
+      <displayName>Backup configuration</displayName>
+    </task>
   </process>
   <process name="Process/workflows/Failover/Process_Get_State">
     <displayName>Get State</displayName>
