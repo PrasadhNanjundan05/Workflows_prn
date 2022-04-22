@@ -24,6 +24,10 @@
       <processPath></processPath>
       <displayName>Create route</displayName>
     </task>
+    <task name="Task_Backup_configuration.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Activate_SIX1/Tasks</processPath>
+      <displayName>Backup configuration</displayName>
+    </task>
     <task name="Process/workflows/Failover/Process_Initialize/Tasks/Failover_IMPORT.py">
       <processPath></processPath>
       <displayName>Get state</displayName>
