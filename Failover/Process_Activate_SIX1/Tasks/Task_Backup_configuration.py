@@ -17,7 +17,7 @@ retry = 100
 while result == 'RUNNING' and retry > 0:
     sleep(1)
     result = conf_backup.backup_status(devicelongid)
-    retry--
+    retry -= 1
 
 if result == 'ENDED':
     ret = MSA_API.process_content('ENDED', 'Backup done', context, True)
