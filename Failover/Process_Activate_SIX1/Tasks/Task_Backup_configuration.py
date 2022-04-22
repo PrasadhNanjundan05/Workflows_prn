@@ -2,19 +2,8 @@ from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.conf_backup import ConfBackup
 
-'''
-List all the parameters required by the task
-
-You can use var_name convention for your variables
-They will display automaticaly as "Var Name"
-The allowed types are:
-  'String', 'Boolean', 'Integer', 'Password', 'IpAddress',
-  'IpMask', 'Ipv6Address', 'Composite', 'OBMFRef', 'Device'
-
- Add as many variables as needed
-'''
 dev_var = Variables()
-dev_var.add('device_id', var_type='Device')
+#dev_var.add('device_id', var_type='Device')
 
 context = Variables.task_call(dev_var)
 
