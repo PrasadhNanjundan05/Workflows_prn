@@ -22,7 +22,8 @@ device_id = context['device_id']
 devicelongid = device_id[3:]
 
 conf_backup = ConfBackup()
-conf_backup.backup(devicelongid)
+result = conf_backup.backup(devicelongid)
+context['result'] = result
 
 '''
 Format of the Task response :
