@@ -20,7 +20,7 @@ devicelongid = device_id[3:]
 #micro_service_vars_array = {"object_id":object_id}
 object_parameters = {}
 object_parameters['Failover'] = {}
-object_parameters['Failover']['object_id'] = 'ip'
+object_parameters['Failover']['ip'] = {'object_id':'ip'}
 
 
 # call the CREATE for the specified MS for each device
