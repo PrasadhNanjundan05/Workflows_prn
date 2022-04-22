@@ -6,7 +6,7 @@ from msa_sdk.order import Order
 # List all the parameters required by the task
 dev_var = Variables()
 dev_var.add('device_id', var_type='Device')
-dev_var.add('Failover.0.object_id', var_type='String')
+dev_var.add('Failover.object_id', var_type='String')
 
 context = Variables.task_call(dev_var)
 
@@ -20,11 +20,8 @@ devicelongid = device_id[3:]
 #{"Gateway":"0"}
 #micro_service_vars_array = {"object_id":object_id}
 object_parameters = {}
-
 object_parameters['Failover'] = {}
-for v in context['Failover']:
-  object_parameters['Failover'][v['object_id']] = v
-
+object_parameters['Failover']['object_id'] = 'ip'
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
