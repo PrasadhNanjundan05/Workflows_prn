@@ -24,9 +24,9 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="Failover_DELETE.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Activate_SIX1/Tasks</processPath>
-      <displayName>Delete route</displayName>
+    <task name="Process/workflows/Failover/Process_Activate_SIX2/Tasks/Failover_CREATE.py">
+      <processPath></processPath>
+      <displayName>Create route</displayName>
     </task>
   </process>
   <process name="Process/workflows/Failover/Process_Activate_SIX2">
@@ -34,9 +34,9 @@
     <type>UPDATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <task name="Failover_CREATE.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Failover/Process_Activate_SIX2/Tasks</processPath>
-      <displayName>Create route</displayName>
+    <task name="Process/workflows/Failover/Process_Activate_SIX1/Tasks/Failover_DELETE.py">
+      <processPath></processPath>
+      <displayName>Delete route</displayName>
     </task>
   </process>
   <information>
