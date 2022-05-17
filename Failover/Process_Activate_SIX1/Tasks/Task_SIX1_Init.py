@@ -4,17 +4,6 @@ Visit http://[YOUR_MSA_URL]/msa_sdk/ to see what you can import.
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 
-'''
-List all the parameters required by the task
-
-You can use var_name convention for your variables
-They will display automaticaly as "Var Name"
-The allowed types are:
-  'String', 'Boolean', 'Integer', 'Password', 'IpAddress',
-  'IpMask', 'Ipv6Address', 'Composite', 'OBMFRef', 'Device'
-
- Add as many variables as needed
-'''
 dev_var = Variables()
 dev_var.add('var_name', var_type='String')
 dev_var.add('var_name2', var_type='Integer')
@@ -29,8 +18,7 @@ Update context array [add/update/delete variables] as per requirement
 ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
-context['var_name2'] = int(context['var_name2']) + 1
-
+context['device_id'] = context['six1_id']
 '''
 Format of the Task response :
 JSON format : {"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}}
