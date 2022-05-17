@@ -7,6 +7,7 @@ from msa_sdk.msa_api import MSA_API
 dev_var = Variables()
 dev_var.add('var_name', var_type='String')
 dev_var.add('var_name2', var_type='Integer')
+dev_var.add('device_id', var_type='Device')
 
 '''
 context => Service Context variable per Service Instance
