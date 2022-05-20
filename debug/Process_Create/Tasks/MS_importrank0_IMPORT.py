@@ -24,24 +24,14 @@ object_parameters['MS_importrank0'] = '0';
 
 
 # call the CREATE for the specified MS for each device
-order = Order(devicelongid)
+#order = Order(devicelongid)
 #order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
-content = json.loads(order.content)
+#content = json.loads(order.content)
 
 # check if the response is OK
-if order.response.ok:
-    ret = MSA_API.process_content('ENDED',
-                                  f'STATUS: {content["status"]}, \
-                                    MESSAGE: successfull',
-                                  context, True)
-else:
-    ret = MSA_API.process_content('FAILED',
-                                  f'Import failed \
-                                  - {order.content}',
-                                  context, True)
-
+ret = MSA_API.process_content('ENDED', 'STATUS: OK', context, True)
 
 print(ret)
 
