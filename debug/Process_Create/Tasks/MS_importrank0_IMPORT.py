@@ -24,7 +24,7 @@ object_parameters['MS_importrank0'] = '0';
 
 
 # call the CREATE for the specified MS for each device
-#order = Order(devicelongid)
+order = Order(devicelongid)
 #order.command_execute('IMPORT', object_parameters)
 
 # convert dict object into json
