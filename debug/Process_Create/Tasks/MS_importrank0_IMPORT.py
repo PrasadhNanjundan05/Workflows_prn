@@ -10,8 +10,6 @@ context = Variables.task_call(dev_var)
 device_id = context['device_id']
 devicelongid = device_id[3:]
 
-object_parameters = {}
-
 order = Order(devicelongid)
 
 ret = MSA_API.process_content('ENDED', 'STATUS: OK', context, True)
