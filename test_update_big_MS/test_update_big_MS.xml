@@ -26,10 +26,6 @@
       <processPath>/opt/fmc_repository/Process/workflows/test_update_big_MS/Process_UPDATE_MS/Tasks</processPath>
       <displayName>update_ms</displayName>
     </task>
-    <task name="Task_updatems_serialized.py">
-      <processPath>/opt/fmc_repository/Process/workflows/test_update_big_MS/Process_UPDATE_MS/Tasks</processPath>
-      <displayName>updatems_serialized</displayName>
-    </task>
   </process>
   <information>
     <icon/>
