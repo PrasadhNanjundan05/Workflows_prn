@@ -12,7 +12,17 @@
     <allowSchedule/>
     <task name="test_MS_ydu_CREATE.py">
       <processPath>/opt/fmc_repository/Process/workflows/WF_for_test_MS_ydu/Process_Add/Tasks</processPath>
-      <displayName>create</displayName>
+      <displayName>Create</displayName>
+    </task>
+  </process>
+  <process name="Process/workflows/WF_for_test_MS_ydu/Process_Delete">
+    <displayName>Delete</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="test_MS_ydu_DELETE.py">
+      <processPath>/opt/fmc_repository/Process/workflows/WF_for_test_MS_ydu/Process_Delete/Tasks</processPath>
+      <displayName>Delete</displayName>
     </task>
   </process>
   <information>
