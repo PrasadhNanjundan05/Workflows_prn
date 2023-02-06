@@ -2,6 +2,7 @@ import json
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk.order import Order
+from msa_sdk.order import util
 
 # List all the parameters required by the task
 dev_var = Variables()
@@ -32,6 +33,8 @@ order.command_call('CREATE', 2, object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
+
+util.log_to_process_file(999, order.content)
 
 # check if the response is OK
 if order.response.ok:
