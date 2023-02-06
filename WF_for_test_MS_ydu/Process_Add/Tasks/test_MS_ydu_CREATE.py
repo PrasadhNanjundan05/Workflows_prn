@@ -28,7 +28,7 @@ for v in context['test_MS_ydu']:
 
 # call the CREATE for the specified MS for each device
 order = Order(devicelongid)
-order.command_execute('CREATE', object_parameters)
+order.command_call('CREATE', 2, object_parameters)
 
 # convert dict object into json
 content = json.loads(order.content)
