@@ -34,7 +34,8 @@ order.command_call('CREATE', 2, object_parameters)
 # convert dict object into json
 content = json.loads(order.content)
 
-util.log_to_process_file(999, order)
+util.log_to_process_file(999, f'Response: {order.response.ok}'
+util.log_to_process_file(999, order.content)
 
 # check if the response is OK
 if order.response.ok:
