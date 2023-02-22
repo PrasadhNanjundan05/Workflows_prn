@@ -6,6 +6,10 @@
     <type>CREATE</type>
     <visibility>5</visibility>
     <allowSchedule/>
+    <task name="Task_wait.py">
+      <processPath>/opt/fmc_repository/Process/workflows/For_multiple_instances_in_parallel/Process_wait/Tasks</processPath>
+      <displayName>wait</displayName>
+    </task>
   </process>
   <information>
     <icon/>
