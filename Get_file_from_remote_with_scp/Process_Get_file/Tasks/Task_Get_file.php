@@ -67,12 +67,16 @@ $file = $context['file'];
 $scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>&1";
 //$scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/";
 logToFile("CMD $scp_command");
-$response = exec($scp_command, $scp_response);
+$response = exec($scp_command, $scp_response, $ret);
+logToFile("RESPONSE $ret");
 logToFile("RESPONSE $response");
 logToFile("ARRAY RESPONSE " . print_r($scp_response, true));
 /**
  * End of the task (choose one)
  */
-task_success('Task OK');
-//task_error('Task FAILED');
+if ($ret == 0) {
+  task_success('Task OK');
+} else {
+  task_error('Task FAILED');
+}
 ?>
