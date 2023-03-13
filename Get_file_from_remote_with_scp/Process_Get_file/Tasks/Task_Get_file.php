@@ -76,7 +76,7 @@ logToFile("ARRAY RESPONSE " . print_r($scp_response, true));
 if ($ret == 0) {
   task_success('Task OK');
 } else {
-  $err = print_r($scp_response, true);
+  $err = implode("\n", $scp_response);
   task_error("Task FAILED : $err\n");
 }
 ?>
