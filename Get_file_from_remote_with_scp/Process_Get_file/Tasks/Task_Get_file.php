@@ -65,7 +65,6 @@ $file = $context['file'];
  * In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
  */
 $scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>&1";
-//$scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/";
 logToFile("CMD $scp_command");
 $response = exec($scp_command, $scp_response, $ret);
 logToFile("RESPONSE $ret");
@@ -77,6 +76,7 @@ logToFile("ARRAY RESPONSE " . print_r($scp_response, true));
 if ($ret == 0) {
   task_success('Task OK');
 } else {
-  task_error('Task FAILED');
+  $err = print_r($scp_response, true);
+  task_error("Task FAILED : $err\n");
 }
 ?>
