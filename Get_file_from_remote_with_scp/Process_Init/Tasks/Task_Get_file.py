@@ -8,6 +8,7 @@ from msa_sdk.msa_api import MSA_API
 $remote = $context['remote'];
 $file = $context['file'];
 $cmd = "/usr/bin/sshpass  -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>/dev/null"
+logToFile("CMD $cmd");
 '''
 Format of the Task response :
 JSON format : {"wo_status":"status","wo_comment":"comment","wo_newparams":{json_body}}
