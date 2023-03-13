@@ -35,7 +35,8 @@ function list_args()
  * For ex. if (empty($context['var_name']) || (empty($context['var_name2']) && empty($context['var_name3']))) => FAIL [Don't proceed]
  * Such cases need to be handled as per the Task logic
  */
-check_mandatory_param('var_name');
+check_mandatory_param('remote');
+check_mandatory_param('file');
 
 /**
  * $context => Service Context variable per Service Instance
