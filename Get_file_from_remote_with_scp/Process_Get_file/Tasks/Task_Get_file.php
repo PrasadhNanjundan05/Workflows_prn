@@ -19,8 +19,6 @@ function list_args()
    *
    * Add as many variables as needed
    */
-  create_var_def('var_name', 'String');
-  create_var_def('var_name2', 'Integer');
 }
 
 /**
@@ -35,7 +33,6 @@ function list_args()
  * For ex. if (empty($context['var_name']) || (empty($context['var_name2']) && empty($context['var_name3']))) => FAIL [Don't proceed]
  * Such cases need to be handled as per the Task logic
  */
-check_mandatory_param('var_name');
 
 /**
  * $context => Service Context variable per Service Instance
@@ -46,7 +43,8 @@ check_mandatory_param('var_name');
  *
  * ENTER YOUR CODE HERE
  */
-$context['var_name2'] = $context['var_name2'] + 1;
+$remote = $context['remote'];
+$file = $context['file'];
 
 /**
  * Format of the Task response :
@@ -66,15 +64,11 @@ $context['var_name2'] = $context['var_name2'] + 1;
  * The response "$ret" should be echoed from the Task "echo $ret" which is read by Orchestration Engine
  * In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
  */
-if ($context['var_name2'] % 2 === 0) {
-	$ret = prepare_json_response(FAILED, 'Task Failed', $context, true);
-	echo "$ret\n";
-	exit;
-}
-
+$cmd = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>/dev/null"
+logToFile("CMD $cmd");
 /**
  * End of the task (choose one)
  */
 task_success('Task OK');
-task_error('Task FAILED');
+//task_error('Task FAILED');
 ?>
