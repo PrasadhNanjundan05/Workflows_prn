@@ -13,8 +13,14 @@
       <processPath>/opt/fmc_repository/Process/workflows/Get_file_from_remote_with_scp/Process_Init/Tasks</processPath>
       <displayName>Init</displayName>
     </task>
-    <task name="Task_Get_file.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Get_file_from_remote_with_scp/Process_Init/Tasks</processPath>
+  </process>
+  <process name="Process/workflows/Get_file_from_remote_with_scp/Process_Get_file">
+    <displayName>Get file</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Process/workflows/Get_file_from_remote_with_scp/Process_Init/Tasks/Task_Get_file.py">
+      <processPath></processPath>
       <displayName>Get file</displayName>
     </task>
   </process>
