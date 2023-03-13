@@ -69,7 +69,7 @@ $scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=
 logToFile("CMD $scp_command");
 $response = exec($scp_command, $scp_response);
 logToFile("RESPONSE $response");
-logToFile("ARRAY RESPONSE " . print_r($response, true)");
+logToFile("ARRAY RESPONSE " . print_r($response, true));
 /**
  * End of the task (choose one)
  */
