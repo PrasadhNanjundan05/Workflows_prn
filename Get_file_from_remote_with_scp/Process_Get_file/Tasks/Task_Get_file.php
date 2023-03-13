@@ -64,7 +64,7 @@ $file = $context['file'];
  * The response "$ret" should be echoed from the Task "echo $ret" which is read by Orchestration Engine
  * In case of FAILURE/WARNING, the Task can be Terminated by calling "exit" as per Logic
  */
-$scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>/dev/null";
+$scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>&1";
 //$scp_command = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/";
 logToFile("CMD $scp_command");
 $response = exec($scp_command, $scp_response);
