@@ -67,7 +67,8 @@ $file = $context['file'];
 $cmd = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/ 2>/dev/null";
 $cmd = "/usr/bin/sshpass -p demo  /usr/bin/scp -o StrictHostKeyChecking=no -o ConnectTimeout=20 demo@{$remote}:{$file} /tmp/";
 logToFile("CMD $cmd");
-
+$response = exec($scp_command, $scp_response);
+logToFile("RESPONSE $response");
 /**
  * End of the task (choose one)
  */
