@@ -16,8 +16,8 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
-dev_var.add('var_name', var_type='String')
-dev_var.add('var_name2', var_type='Integer')
+dev_var.add('remote', var_type='IpAddress')
+dev_var.add('file', var_type='String')
 
 '''
 context => Service Context variable per Service Instance
@@ -29,7 +29,6 @@ Update context array [add/update/delete variables] as per requirement
 ENTER YOUR CODE HERE
 '''
 context = Variables.task_call(dev_var)
-context['var_name2'] = int(context['var_name2']) + 1
 
 '''
 Format of the Task response :
