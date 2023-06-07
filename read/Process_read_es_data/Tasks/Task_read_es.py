@@ -75,7 +75,6 @@ context = Variables.task_call(dev_var)
 
 auth_key = context['auth_key']
 
-# es = Elasticsearch(hosts='http://10.31.1.190:9200', basic_auth='c3VwZXJ1c2VyOnheWnl1R002fnU9K2ZZMkc=')
 es = Elasticsearch(hosts='http://msa-es:9200', basic_auth=auth_key)
 
 start_date = 'start_date' in context and context['start_date']
