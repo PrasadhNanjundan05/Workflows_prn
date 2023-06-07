@@ -93,9 +93,9 @@ if 'start_date' in context and context['start_date']:
 
 
 if 'end_date' in context and context['end_date']:
-	timeArray = time.strptime(context.get('end_date'), '%Y-%m-%d %H:%M:%S')
-	end_timestamp = time.mktime(timeArray)
-	timestamp['lte'] = end_timestamp
+	end_timestamp = int(time.mktime(time.strptime(context.get('end_date'), "%Y-%m-%d %H:%M:%S")))
+	formatted_end_time = time.strftime("%Y-%m-%dT%H:%M:%S.%fZ", time.gmtime(end_timestamp))
+	timestamp['lte'] = formatted_end_time
 
 ranges['_timestamp_epoch_'] = timestamp
 resp = es.search(index=index, query={"range": ranges})
