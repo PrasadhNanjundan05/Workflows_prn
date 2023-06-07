@@ -152,7 +152,7 @@ if data:
 			title_style.fontSize = 24
 			title_paragraph = Paragraph(title, title_style)
 			
-			image_path = "/opt/fmc_repository/images/ubi_logo.png"
+			image_path = "/opt/fmc_repository/Process/workflows/read/ubi_logo.png"
 			image_top = Image(image_path, width=180, height=40)
 			image_top.hAlign = 'RIGHT'
 			image_top.vAlign = 'TOP'
