@@ -87,14 +87,14 @@ timestamp = {}
 
 if 'start_date' in context and context['start_date']:
 	timeArray = time.strptime(context.get('start_date'), '%Y-%m-%d %H:%M:%S')
-	start_timestamp = time.mktime(timeArray)
+	start_timestamp = time.mktime(timeArray) * 1000
 	timestamp['gte'] = start_timestamp
 
 
 
 if 'end_date' in context and context['end_date']:
 	timeArray = time.strptime(context.get('end_date'), '%Y-%m-%d %H:%M:%S')
-	end_timestamp = time.mktime(timeArray)
+	end_timestamp = time.mktime(timeArray) * 1000
 	timestamp['lte'] = end_timestamp
 
 ranges['_timestamp_epoch_'] = timestamp
