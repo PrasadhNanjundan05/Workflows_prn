@@ -98,13 +98,22 @@ if 'end_date' in context and context['end_date']:
 	timestamp['lte'] = end_timestamp
 
 ranges['_timestamp_epoch_'] = timestamp
-resp = es.search(index=index, body={'query':{'range': ranges},'size':1000}, scroll='1m')
+
+query = {
+    'query': {
+        'range': ranges
+    },
+    'size': 1000
+}
+resp = es.search(index=index, body=query, scroll='1m')
 
 scroll_id = resp["_scroll_id"]
 total_results = resp["hits"]["total"]["value"]
-
-# data = [x['_source'] for x in resp['hits']['hits']]
 data = []
+
+for hit in resp["hits"]["hits"]:
+	data.append(hit["_source"])
+
 while total_results > 0:
     response = es.scroll(scroll_id=scroll_id, scroll="1m")
 
