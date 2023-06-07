@@ -229,6 +229,3 @@ if data:
 else:
 	ret = MSA_API.process_content('ENDED', 'no data', context, True)
 	print(ret)
-
-
-
