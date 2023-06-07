@@ -115,17 +115,17 @@ for hit in resp["hits"]["hits"]:
 	data.append(hit["_source"])
 
 while total_results > 0:
-    response = es.scroll(scroll_id=scroll_id, scroll="1m")
+	response = es.scroll(scroll_id=scroll_id, scroll="1m")
 
-    scroll_id = response["_scroll_id"]
-    hits = response["hits"]["hits"]
-    if len(hits) == 0:
-    	break
+	scroll_id = response["_scroll_id"]
+	hits = response["hits"]["hits"]
+	if len(hits) == 0:
+		break
 
 	total_results -= len(hits)
 	
-    for hit in hits:
-    	data.append(hit["_source"])
+	for hit in hits:
+		data.append(hit["_source"])
 
 
 
