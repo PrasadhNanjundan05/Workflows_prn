@@ -86,9 +86,9 @@ timestamp = {}
 
 
 if 'start_date' in context and context['start_date']:
-	timeArray = time.strptime(context.get('start_date'), '%Y-%m-%d %H:%M:%S')
-	start_timestamp = time.mktime(timeArray)
-	timestamp['gte'] = start_timestamp
+	start_timestamp = int(time.mktime(time.strptime(context.get('start_date'), "%Y-%m-%d %H:%M:%S")))
+	formatted_start_time = time.strftime("%Y-%m-%dT%H:%M:%S.%fZ", time.gmtime(start_timestamp))
+	timestamp['gte'] = formatted_start_time
 
 
 
