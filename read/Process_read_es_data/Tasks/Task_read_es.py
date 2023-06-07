@@ -86,16 +86,16 @@ timestamp = {}
 
 
 if 'start_date' in context and context['start_date']:
-	start_timestamp = int(time.mktime(time.strptime(context.get('start_date'), "%Y-%m-%d %H:%M:%S")))
-	formatted_start_time = time.strftime("%Y-%m-%dT%H:%M:%S.%fZ", time.gmtime(start_timestamp))
-	timestamp['gte'] = formatted_start_time
+	timeArray = time.strptime(context.get('start_date'), '%Y-%m-%d %H:%M:%S')
+	start_timestamp = time.mktime(timeArray)
+	timestamp['gte'] = start_timestamp
 
 
 
 if 'end_date' in context and context['end_date']:
-	end_timestamp = int(time.mktime(time.strptime(context.get('end_date'), "%Y-%m-%d %H:%M:%S")))
-	formatted_end_time = time.strftime("%Y-%m-%dT%H:%M:%S.%fZ", time.gmtime(end_timestamp))
-	timestamp['lte'] = formatted_end_time
+	timeArray = time.strptime(context.get('end_date'), '%Y-%m-%d %H:%M:%S')
+	end_timestamp = time.mktime(timeArray)
+	timestamp['lte'] = end_timestamp
 
 ranges['_timestamp_epoch_'] = timestamp
 resp = es.search(index=index, query={"range": ranges})
