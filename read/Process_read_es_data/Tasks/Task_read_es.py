@@ -7,7 +7,7 @@ import pandas as pd
 
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
-from reportlab.lib.pagesizes import letter, landscape, A2
+from reportlab.lib.pagesizes import letter, landscape, A1
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
@@ -51,7 +51,7 @@ headers_dic = {
 }
 
 index = 'ubi-sync-*'
-
+rows_per_page = 70
 doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
 file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
 
@@ -135,7 +135,7 @@ if data:
 	
 	df = pd.DataFrame(values[1:], columns=values[0])
 	data = [df.columns.tolist()] + df.values.tolist()
-	doc = SimpleDocTemplate(pdf_file_path, pagesize=landscape(A2))
+	doc = SimpleDocTemplate(pdf_file_path, pagesize=landscape(A1))
 	styles = getSampleStyleSheet()
 	style = TableStyle([
 		('BACKGROUND', (0, 0), (-1, 0), '0x4c5b7b'),
@@ -153,7 +153,7 @@ if data:
 	for row in data_adjust_width:
 		for i, cell in enumerate(row):
 			col_widths[i] = max(col_widths[i], len(str(cell)) * 6)
-	rows_per_page = 28
+	
 	
 	
 	data_pages = [data[i:i + rows_per_page] for i in range(0, len(data), rows_per_page)]
