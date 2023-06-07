@@ -100,8 +100,8 @@ if 'end_date' in context and context['end_date']:
 ranges['_timestamp_epoch_'] = timestamp
 resp = es.search(index=index, body={'query':{'range': ranges},'size':1000}, scroll='1m')
 
-scroll_id = response["_scroll_id"]
-total_results = response["hits"]["total"]["value"]
+scroll_id = resp["_scroll_id"]
+total_results = resp["hits"]["total"]["value"]
 
 # data = [x['_source'] for x in resp['hits']['hits']]
 data = []
