@@ -118,9 +118,13 @@ while total_results > 0:
     response = es.scroll(scroll_id=scroll_id, scroll="1m")
 
     scroll_id = response["_scroll_id"]
-    total_results -= len(response["hits"]["hits"])
+    hits = response["hits"]["hits"]
+    if len(hits) == 0:
+    	break
 
-    for hit in response["hits"]["hits"]:
+	total_results -= len(hits)
+	
+    for hit in hits:
     	data.append(hit["_source"])
 
 
