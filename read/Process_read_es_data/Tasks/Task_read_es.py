@@ -234,7 +234,6 @@ dev_var.add('receiver_email', var_type='String')
 dev_var.add('subject', var_type='String')
 dev_var.add('message', var_type='String')
 dev_var.add('send_email', var_type='Boolean')
-dev_var.add('apps_to_deploy.0.data', var_type='String')
 
 context = Variables.task_call(dev_var)
 
