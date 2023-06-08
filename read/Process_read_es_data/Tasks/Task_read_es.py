@@ -1,10 +1,3 @@
-import smtplib
-import time
-import copy
-import csv
-import os
-import pandas as pd
-
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from reportlab.lib.pagesizes import letter, landscape, A1
@@ -20,6 +13,13 @@ from datetime import datetime
 from tabulate import tabulate
 from os.path import basename
 
+import smtplib
+import time
+import copy
+import csv
+import os
+import pandas as pd
+
 def process_data(data):
 	for d in data:
 		d['target_size'] = str(d['target_size']) + ' KB' if d['target_size'] else ''
@@ -32,118 +32,68 @@ def process_data(data):
 		del d['_timestamp_epoch_']
 	return data
 
-
-headers_dic = {
-    'restore_end': 'restore end time',
-    'backup_end': 'backup end time',
-    'type': 'sync type',
-    'dst_ip': 'dc replica ip',
-    'errormsg': 'error msg',
-    'src_ip': 'dc primary ip',
-    'target_size': 'replica size',
-    'restore_start': 'restore start time',
-    'backup_start': 'backup start time',
-    '_timestamp_': 'record time',
-    'target_file': 'file name',
-    'host': 'host',
-    'id': 'dump id',
-    'dc_status': 'dc status'
-}
-
-index = 'ubi-sync-*'
-rows_per_page = 70
-doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
-file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
-
-if not os.path.exists(doc_path):
-	os.makedirs(doc_path)
-
-dev_var = Variables()
-dev_var.add('auth_key', var_type='String')
-dev_var.add('email', var_type='String')
-dev_var.add('start_date', var_type='String')
-dev_var.add('end_date', var_type='String')
-dev_var.add('sender_email', var_type='String')
-dev_var.add('sender_password', var_type='String')
-dev_var.add('receiver_email', var_type='String')
-dev_var.add('subject', var_type='String')
-dev_var.add('message', var_type='String')
-dev_var.add('send_email', var_type='Boolean')
-
-
-context = Variables.task_call(dev_var)
-
-auth_key = context['auth_key']
-
-es = Elasticsearch(hosts='http://msa-es:9200', basic_auth=auth_key)
-
-start_date = 'start_date' in context and context['start_date']
-end_date = 'end_date' in context and context['end_date']
-
-
-ranges = {}
-timestamp = {}
-
-
-if 'start_date' in context and context['start_date']:
-	timeArray = time.strptime(context.get('start_date'), '%Y-%m-%d %H:%M:%S')
-	start_timestamp = time.mktime(timeArray) * 1000
-	timestamp['gte'] = start_timestamp
-
-
-
-if 'end_date' in context and context['end_date']:
-	timeArray = time.strptime(context.get('end_date'), '%Y-%m-%d %H:%M:%S')
-	end_timestamp = time.mktime(timeArray) * 1000
-	timestamp['lte'] = end_timestamp
-
-ranges['_timestamp_epoch_'] = timestamp
-
-query = {
-    'query': {
-        'range': ranges
-    },
-    'size': 1000
-}
-resp = es.search(index=index, body=query, scroll='1m')
-
-scroll_id = resp["_scroll_id"]
-total_results = resp["hits"]["total"]["value"]
-data = []
-
-for hit in resp["hits"]["hits"]:
-	data.append(hit["_source"])
-
-while total_results > 0:
-	response = es.scroll(scroll_id=scroll_id, scroll="1m")
-
-	scroll_id = response["_scroll_id"]
-	hits = response["hits"]["hits"]
-	if len(hits) == 0:
-		break
-
-	total_results -= len(hits)
+def query_conditions(context):
+	ranges = {}
+	timestamp = {}
 	
-	for hit in hits:
+	if 'start_date' in context and context['start_date']:
+		timeArray = time.strptime(context.get('start_date'), '%Y-%m-%d %H:%M:%S')
+		start_timestamp = time.mktime(timeArray) * 1000
+		timestamp['gte'] = start_timestamp
+
+
+	if 'end_date' in context and context['end_date']:
+		timeArray = time.strptime(context.get('end_date'), '%Y-%m-%d %H:%M:%S')
+		end_timestamp = time.mktime(timeArray) * 1000
+		timestamp['lte'] = end_timestamp
+		
+	ranges['_timestamp_epoch_'] = timestamp
+
+	query = {
+    	'query': {
+        	'range': ranges
+    	},
+    	'size': 1000
+	}
+	
+	return query
+
+def search(query_condition, context):
+	
+	auth_key = context['auth_key']
+	es = Elasticsearch(hosts='http://10.31.1.56:9200', basic_auth=auth_key)
+	resp = es.search(index=index, body=query_condition, scroll='1m')
+
+	scroll_id = resp["_scroll_id"]
+	total_results = resp["hits"]["total"]["value"]
+	data = []
+
+	for hit in resp["hits"]["hits"]:
 		data.append(hit["_source"])
 
+	while total_results > 0:
+		response = es.scroll(scroll_id=scroll_id, scroll="1m")
 
+		scroll_id = response["_scroll_id"]
+		hits = response["hits"]["hits"]
+		if len(hits) == 0:
+			break
 
-if data:
-	data = process_data(data)
-	header_formart = [list(obj.keys()) for obj in data][0]
-	headers = [headers_dic.get(h) for h in header_formart]
-	values = [list(obj.values()) for obj in data]
-	tabu_data = tabulate(data)
+		total_results -= len(hits)
 	
+		for hit in hits:
+			data.append(hit["_source"])
+	return data
+
+def write_to_csv(headers, values):
 	csv_file_path = doc_path + '/' + file_name + '.csv'
 	with open(csv_file_path, 'w', newline='') as t:
 		writer = csv.writer(t)
 		writer.writerow(headers)
 		writer.writerows(values)
-	
-	context['csv_link'] = csv_file_path
-	
+	return csv_file_path
+
+def write_to_pdf(headers, values):
 	pdf_file_path = doc_path + '/' + file_name + '.pdf'
 	
 	df = pd.DataFrame(values[1:], columns=values[0])
@@ -163,11 +113,10 @@ if data:
 	col_widths = [0] * len(data[0])
 	data_adjust_width = copy.deepcopy(data)
 	data_adjust_width.insert(0, headers)
+	
 	for row in data_adjust_width:
 		for i, cell in enumerate(row):
 			col_widths[i] = max(col_widths[i], len(str(cell)) * 6)
-	
-	
 	
 	data_pages = [data[i:i + rows_per_page] for i in range(0, len(data), rows_per_page)]
 	
@@ -208,9 +157,10 @@ if data:
 		else:
 			story.append(KeepTogether([Spacer(0, 30), table, Spacer(0, 30), text_paragraph, image_botton, page_paragraph, PageBreak()]))
 		
-	doc.build(story)	
-	context['pdf_link'] = pdf_file_path
-	
+	doc.build(story)
+	return pdf_file_path
+
+def send_email(context):
 	if 'sender_email' in context and context['sender_email']:
 		sender_email = context['sender_email']
 		sender_password = context['sender_password']
@@ -225,7 +175,6 @@ if data:
 		else:
 			message = ''
 		
-		
 		msg = MIMEMultipart()
 		msg['From'] = sender_email
 		msg['To'] = receiver_email
@@ -233,7 +182,7 @@ if data:
 		
 		msg.attach(MIMEText(message, 'plain'))
 		
-		attachment_paths = [pdf_file_path, csv_file_path]
+		attachment_paths = [context['pdf_download_link'], context['csv_download_link']]
 		for f in attachment_paths:
 			with open(f, 'rb') as file:
 				part = MIMEApplication(
@@ -249,8 +198,63 @@ if data:
 		smtpObj.starttls()
 		smtpObj.login(sender_email, sender_password)
 		smtpObj.sendmail(sender_email, receiver_email.split(','), msg.as_string())
-		
-	ret = MSA_API.process_content('ENDED', tabu_data, context, True)
+	
+headers_dic = {
+    'restore_end': 'restore end time',
+    'backup_end': 'backup end time',
+    'type': 'sync type',
+    'dst_ip': 'dc replica ip',
+    'errormsg': 'error msg',
+    'src_ip': 'dc primary ip',
+    'target_size': 'replica size',
+    'restore_start': 'restore start time',
+    'backup_start': 'backup start time',
+    '_timestamp_': 'record time',
+    'target_file': 'file name',
+    'host': 'host',
+    'id': 'dump id',
+    'dc_status': 'dc status'
+}
+
+index = 'ubi-sync-*'
+rows_per_page = 70
+doc_path = '/opt/fmc_repository/Process/workflows/esResultFiles'
+file_name = time.strftime("%Y-%m-%d %H-%M-%S") + '-db-sync-report'
+
+if not os.path.exists(doc_path):
+	os.makedirs(doc_path)
+
+dev_var = Variables()
+dev_var.add('auth_key', var_type='String')
+dev_var.add('start_date', var_type='String')
+dev_var.add('end_date', var_type='String')
+dev_var.add('sender_email', var_type='String')
+dev_var.add('sender_password', var_type='String')
+dev_var.add('receiver_email', var_type='String')
+dev_var.add('subject', var_type='String')
+dev_var.add('message', var_type='String')
+dev_var.add('send_email', var_type='Boolean')
+dev_var.add('apps_to_deploy.0.data', var_type='String')
+
+context = Variables.task_call(dev_var)
+
+query_condition = query_conditions(context)
+
+data = search(query_condition, context)
+
+if data:
+	data = process_data(data)
+	header_formart = [list(obj.keys()) for obj in data][0]
+	headers = [headers_dic.get(h) for h in header_formart]
+	values = [list(obj.values()) for obj in data]
+	
+	context['csv_download_link'] = write_to_csv(headers, values)
+	
+	context['pdf_download_link'] = write_to_pdf(headers, values)
+
+	send_email(context)
+	
+	ret = MSA_API.process_content('ENDED', str(len(values)) + ' records were found and reports was generated', context, True)
 	print(ret)
 	
 else:
