@@ -95,8 +95,8 @@ def search(query_condition, context):
 
 	scroll_id = resp["_scroll_id"]
 	total_results = resp["hits"]["total"]["value"]
-	data = []
 
+	data = []
 	for hit in resp["hits"]["hits"]:
 		data.append(hit["_source"])
 
