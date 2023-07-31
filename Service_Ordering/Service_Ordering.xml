@@ -1,0 +1,16 @@
+<ObjectDefinition>
+  <variables frozen="0"/>
+  <example/>
+  <information>
+    <icon/>
+    <description/>
+    <displayField>service_id</displayField>
+    <serviceTaskType>python</serviceTaskType>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <msDirectoryName/>
+    <processToAssociateToTrashIcon/>
+    <name>Service Ordering</name>
+    <group/>
+  </information>
+</ObjectDefinition>
