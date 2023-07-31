@@ -16,6 +16,9 @@ The allowed types are:
  Add as many variables as needed
 '''
 dev_var = Variables()
+dev_var.add('request_start_date', var_type='Date')
+dev_var.add('orderitem.0.name', var_type='String')
+dev_var.add('orderitem.0.id', var_type='String')
 dev_var.add('var_name', var_type='String')
 dev_var.add('var_name2', var_type='Integer')
 
