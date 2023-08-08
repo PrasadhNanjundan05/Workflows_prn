@@ -1,0 +1,14 @@
+<ObjectDefinition>
+  <variables frozen="0"/>
+  <example/>
+  <information>
+    <icon/>
+    <description>Upgrades the MSA to latest release available on dockerhub</description>
+    <displayField>service_id</displayField>
+    <serviceTaskType>python</serviceTaskType>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <name>MSA Upgrade</name>
+    <group/>
+  </information>
+</ObjectDefinition>

@@ -1,0 +1,24 @@
+<ObjectDefinition>
+  <variables frozen="0"/>
+  <example/>
+  <process name="Process/workflows/MSA-10055/Process_new">
+    <displayName>new</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_a.py">
+      <processPath>/opt/fmc_repository/Process/workflows/MSA-10055/Process_new/Tasks</processPath>
+      <displayName>a</displayName>
+    </task>
+  </process>
+  <information>
+    <icon/>
+    <description/>
+    <displayField>service_id</displayField>
+    <serviceTaskType>python</serviceTaskType>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <name>MSA-10055</name>
+    <group/>
+  </information>
+</ObjectDefinition>
