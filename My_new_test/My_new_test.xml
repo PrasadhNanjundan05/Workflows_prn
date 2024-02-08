@@ -1,0 +1,16 @@
+<ObjectDefinition>
+  <variables frozen="0"/>
+  <example/>
+  <information>
+    <icon/>
+    <description/>
+    <displayField>service_id</displayField>
+    <order>10000</order>
+    <visibility>5</visibility>
+    <wfConstraintsPath/>
+    <serviceTaskType>python</serviceTaskType>
+    <processToAssociateToTrashIcon/>
+    <name>My new test</name>
+    <group/>
+  </information>
+</ObjectDefinition>
