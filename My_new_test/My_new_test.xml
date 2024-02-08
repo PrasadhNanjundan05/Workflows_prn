@@ -1,6 +1,17 @@
 <ObjectDefinition>
   <variables frozen="0"/>
   <example/>
+  <process name="Process/workflows/My_new_test/Process_my_new">
+    <displayName>my new</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_my_pro.py">
+      <processPath>/opt/fmc_repository/Process/workflows/My_new_test/Process_my_new/Tasks</processPath>
+      <displayName>my pro</displayName>
+    </task>
+    <processConstraintsPath/>
+  </process>
   <information>
     <icon/>
     <description/>
