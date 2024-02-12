@@ -25,10 +25,6 @@
       <processPath>/opt/fmc_repository/Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Encrypted_String_for_User/Tasks</processPath>
       <displayName>encrypted string for user</displayName>
     </task>
-    <task name="Task_test.py">
-      <processPath>/opt/fmc_repository/Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Encrypted_String_for_User/Tasks</processPath>
-      <displayName>test</displayName>
-    </task>
     <processConstraintsPath></processConstraintsPath>
   </process>
   <information>
