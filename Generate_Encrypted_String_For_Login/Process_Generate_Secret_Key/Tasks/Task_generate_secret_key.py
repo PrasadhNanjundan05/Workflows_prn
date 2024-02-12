@@ -6,6 +6,7 @@ if not sys.warnoptions:
 
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
+from msa_sdk import util
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
@@ -18,6 +19,9 @@ dev_var = Variables()
 
 
 context = Variables.task_call(dev_var)
+
+service_id = context['SERVICEINSTANCEID']
+process_id = context['PROCESSINSTANCEID']
 
 key = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
