@@ -6,6 +6,12 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 
+import warnings
+from cryptography.exceptions import CryptographyDeprecationWarning
+
+# Suppress CryptographyDeprecationWarning
+warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
+
 dev_var = Variables()
 
 
