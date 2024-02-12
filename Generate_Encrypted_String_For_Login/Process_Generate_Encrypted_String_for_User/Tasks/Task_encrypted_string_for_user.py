@@ -14,8 +14,8 @@ import base64
 
 
 dev_var = Variables()
-dev_var.add('username', var_type='String')
-dev_var.add('password', var_type='Password')
+dev_var.add('user', var_type='String')
+dev_var.add('pass', var_type='Password')
 
 
 context = Variables.task_call(dev_var)
@@ -41,7 +41,7 @@ def encrypt(username, password, shared_key):
 
 
 try:
-    encrypted_data = encrypt(context.get("username"), context.get("password"), context.get("secret_key"))
+    encrypted_data = encrypt(context.get("user"), context.get("pass"), context.get("secret_key"))
     context["encrypted_string_for_user"+str(context.get("username"))] = encrypted_data
 except Exception as e:
     print(e)
