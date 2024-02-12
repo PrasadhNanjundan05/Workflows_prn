@@ -5,11 +5,11 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
+import sys
 import warnings
 
-
-# Suppress all DeprecationWarnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+if not sys.warnoptions:
+    warnings.simplefilter("ignore")
 
 
 dev_var = Variables()
