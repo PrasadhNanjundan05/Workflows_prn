@@ -9,8 +9,9 @@ import base64
 import warnings
 
 
-# Suppress CryptographyDeprecationWarning
-warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
+# Suppress all DeprecationWarnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 dev_var = Variables()
 
