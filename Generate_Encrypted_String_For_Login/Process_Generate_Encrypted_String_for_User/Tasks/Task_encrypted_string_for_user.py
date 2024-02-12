@@ -18,10 +18,10 @@ dev_var = Variables()
 dev_var.add('user', var_type='String')
 dev_var.add('pass', var_type='Password')
 
+context = Variables.task_call(dev_var)
+
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
-
-context = Variables.task_call(dev_var)
 
 def encrypt(username, password, shared_key):
     data = f"{username}:{password}".encode("utf-8")
