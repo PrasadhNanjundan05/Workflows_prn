@@ -42,7 +42,7 @@ def encrypt(username, password, shared_key):
 
 try:
     encrypted_data = encrypt(context.get("user"), context.get("pass"), context.get("secret_key"))
-    context["encrypted_string_for_user"+str(context.get("username"))] = encrypted_data
+    context["encrypted_string_for_user"] = encrypted_data
 except Exception as e:
     print(e)
 
