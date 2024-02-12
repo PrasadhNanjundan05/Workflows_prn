@@ -27,6 +27,13 @@
     </task>
     <processConstraintsPath></processConstraintsPath>
   </process>
+  <process name="Process/workflows/Generate_Encrypted_String_For_Login/Process_delete">
+    <displayName>delete</displayName>
+    <type>DELETE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <processConstraintsPath/>
+  </process>
   <information>
     <icon/>
     <description/>
