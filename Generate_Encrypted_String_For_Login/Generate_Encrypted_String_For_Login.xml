@@ -1,6 +1,17 @@
 <ObjectDefinition>
   <variables frozen="0"/>
   <example/>
+  <process name="Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Secret_Key">
+    <displayName>Generate Secret Key</displayName>
+    <type>CREATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_generate_secret_key.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Secret_Key/Tasks</processPath>
+      <displayName>generate_secret_key</displayName>
+    </task>
+    <processConstraintsPath/>
+  </process>
   <information>
     <icon/>
     <description/>
