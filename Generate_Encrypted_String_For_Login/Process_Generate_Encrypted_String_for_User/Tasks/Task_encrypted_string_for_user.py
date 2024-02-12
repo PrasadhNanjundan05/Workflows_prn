@@ -6,6 +6,7 @@ if not sys.warnoptions:
 
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
+from msa_sdk import util
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
@@ -17,6 +18,8 @@ dev_var = Variables()
 dev_var.add('user', var_type='String')
 dev_var.add('pass', var_type='Password')
 
+service_id = context['SERVICEINSTANCEID']
+process_id = context['PROCESSINSTANCEID']
 
 context = Variables.task_call(dev_var)
 
@@ -48,5 +51,6 @@ except Exception as e:
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
+util.log_to_process_file(service_id, str(ret), process_id)
 print(ret)
 
