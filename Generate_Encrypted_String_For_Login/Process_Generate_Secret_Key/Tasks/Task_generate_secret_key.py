@@ -36,5 +36,6 @@ context["secret_key"] = base64.b64encode(key).decode("utf-8")
 
 
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
+util.log_to_process_file(service_id, str(ret), process_id)
 print(ret)
 
