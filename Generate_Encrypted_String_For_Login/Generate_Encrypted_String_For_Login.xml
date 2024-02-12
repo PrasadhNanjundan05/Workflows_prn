@@ -14,6 +14,17 @@
     </task>
     <processConstraintsPath></processConstraintsPath>
   </process>
+  <process name="Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Encrypted_String_for_User">
+    <displayName>Generate Encrypted String for User</displayName>
+    <type>UPDATE</type>
+    <visibility>5</visibility>
+    <allowSchedule/>
+    <task name="Task_encrypted_string_for_user.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Generate_Encrypted_String_For_Login/Process_Generate_Encrypted_String_for_User/Tasks</processPath>
+      <displayName>encrypted string for user</displayName>
+    </task>
+    <processConstraintsPath/>
+  </process>
   <information>
     <icon/>
     <description/>
