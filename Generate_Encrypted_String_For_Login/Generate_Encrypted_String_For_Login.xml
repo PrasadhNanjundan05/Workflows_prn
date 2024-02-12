@@ -32,7 +32,11 @@
     <type>DELETE</type>
     <visibility>5</visibility>
     <allowSchedule/>
-    <processConstraintsPath/>
+    <task name="Task_delete.py">
+      <processPath>/opt/fmc_repository/Process/workflows/Generate_Encrypted_String_For_Login/Process_delete/Tasks</processPath>
+      <displayName>delete</displayName>
+    </task>
+    <processConstraintsPath></processConstraintsPath>
   </process>
   <information>
     <icon/>
