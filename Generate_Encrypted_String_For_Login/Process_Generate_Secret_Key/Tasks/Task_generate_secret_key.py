@@ -1,7 +1,8 @@
+import sys
 import warnings
 
-# Suppress all DeprecationWarnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+if not sys.warnoptions:
+    warnings.simplefilter("ignore")
 
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
