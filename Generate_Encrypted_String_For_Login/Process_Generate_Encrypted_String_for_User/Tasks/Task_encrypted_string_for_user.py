@@ -27,20 +27,26 @@ def encrypt(username, password, shared_key):
     data = f"{username}:{password}".encode("utf-8")
 
     # Generate Initialization Vector (IV)
-    iv = b'\x00' * 16  # For simplicity, all zeros IV is used
+    iv = get_random_bytes(AES.block_size)
 
-    # Convert the shared key to a SecretKeySpec
-    secret_key = base64.b64decode(shared_key)
+    # Ensure the shared key is 32 bytes long (256 bits) for AES-256
+    shared_key = hashlib.sha256(shared_key.encode()).digest()
 
-    # Create Cipher instance
-    cipher = Cipher(algorithms.AES(secret_key), modes.CBC(iv), backend=default_backend())
-    encryptor = cipher.encryptor()
+    # Create AES cipher object in CBC mode
+    cipher = AES.new(shared_key, AES.MODE_CBC, iv)
 
-    # Encrypt the data
-    encrypted_bytes = encryptor.update(data) + encryptor.finalize()
+    # Pad the data to a multiple of block size
+    padded_data = pad(data, AES.block_size)
 
-    # Base64 encode the encrypted data
-    return base64.b64encode(encrypted_bytes).decode("utf-8")
+    # Encrypt the padded data
+    encrypted_bytes = cipher.encrypt(padded_data)
+
+    # Base64 encode the encrypted data and IV
+    encrypted_data = base64.b64encode(encrypted_bytes).decode("utf-8")
+    encrypted_iv = base64.b64encode(iv).decode("utf-8")
+
+    return encrypted_data, encrypted_iv
+
 
 
 try:
