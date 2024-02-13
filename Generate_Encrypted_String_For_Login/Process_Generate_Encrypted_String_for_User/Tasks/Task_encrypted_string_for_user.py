@@ -11,7 +11,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-import hashlib
 import base64
 
 
@@ -31,22 +30,17 @@ def encrypt(username, password, shared_key):
     iv = b'\x00' * 16  # For simplicity, all zeros IV is used
 
     # Ensure the shared key is 32 bytes long (256 bits) for AES-256
-    shared_key = hashlib.sha256(shared_key.encode()).digest()
+    secret_key = base64.b64decode(shared_key)
 
-    # Create AES cipher object in CBC mode
-    cipher = AES.new(shared_key, AES.MODE_CBC, iv)
+    # Create Cipher instance
+    cipher = Cipher(algorithms.AES(secret_key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
 
-    # Pad the data to a multiple of block size
-    padded_data = pad(data, AES.block_size)
+    # Encrypt the data
+    encrypted_bytes = encryptor.update(data) + encryptor.finalize()
 
-    # Encrypt the padded data
-    encrypted_bytes = cipher.encrypt(padded_data)
-
-    # Base64 encode the encrypted data and IV
-    encrypted_data = base64.b64encode(encrypted_bytes).decode("utf-8")
-    encrypted_iv = base64.b64encode(iv).decode("utf-8")
-
-    return encrypted_data, encrypted_iv
+    # Base64 encode the encrypted data
+    return base64.b64encode(encrypted_bytes).decode("utf-8")
 
 
 
