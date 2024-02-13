@@ -24,7 +24,7 @@ from base64 import b64encode
 from Crypto.Random import get_random_bytes
 
 def encrypt(username, password, shared_key):
-    data = username + ":" + password
+    data = str(username + ":" + password)
     iv = get_random_bytes(16)
     
     cipher = AES.new(shared_key.encode(), AES.MODE_CBC, iv)
