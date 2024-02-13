@@ -18,31 +18,19 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-import base64
-from hashlib import sha256
-from hmac import HMAC
-from Crypto.Util.Padding import pad
 from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from base64 import b64encode
 from Crypto.Random import get_random_bytes
 
-def encrypt(username, password, sharedKey):
+def encrypt(username, password, shared_key):
     data = username + ":" + password
+    iv = get_random_bytes(16)
     
-    # Generate Initialization Vector (IV)
-    iv = get_random_bytes(16)  # Random IV
+    cipher = AES.new(shared_key.encode(), AES.MODE_CBC, iv)
+    encrypted_bytes = cipher.encrypt(pad(data.encode('utf-8'), AES.block_size))
     
-    # Derive key from sharedKey using HMAC
-    key = HMAC(sharedKey.encode('utf-8'), iv, sha256).digest()
-    
-    # Create AES cipher object
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    
-    # Encrypt the data
-    encrypted_data = cipher.encrypt(pad(data.encode('utf-8'), AES.block_size))
-    
-    # Combine IV and encrypted data and Base64 encode
-    encrypted_bytes = iv + encrypted_data
-    return base64.b64encode(encrypted_bytes).decode('utf-8')
+    return b64encode(iv + encrypted_bytes).decode('utf-8')
 
 
 try:
