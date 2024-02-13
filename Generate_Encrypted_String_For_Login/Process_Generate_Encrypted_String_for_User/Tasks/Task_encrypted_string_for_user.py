@@ -42,7 +42,7 @@ def encrypt(username, password, shared_key):
     encryptor = cipher.encryptor()
 
     # Pad the data using PKCS7 padding
-    padded_data = pad_data(data, algorithms.AES.block_size)
+    padded_data = pad_data(data, 16)
 
     # Encrypt the padded data
     encrypted_bytes = encryptor.update(padded_data) + encryptor.finalize()
