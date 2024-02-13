@@ -22,7 +22,7 @@ process_id = context['PROCESSINSTANCEID']
 
 key = os.urandom(32)
 
-context["secret_key"] = key
+context["secret_key"] = base64.b64encode(key).decode('utf-8')
 
 
 
