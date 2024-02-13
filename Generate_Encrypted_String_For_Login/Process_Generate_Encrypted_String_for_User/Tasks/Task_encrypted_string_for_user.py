@@ -24,7 +24,7 @@ service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
 def pad_data(data, block_size):
-    padder = padding.PKCS7(block_size * 8).padder()
+    padder = padding.PKCS5(block_size * 8).padder()
     padded_data = padder.update(data) + padder.finalize()
     return padded_data
 
