@@ -25,8 +25,9 @@ service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
 def pad(data):
-    length = 16 - (len(data) % 16)
-    return data + (chr(length) * length).encode()
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(data) + padder.finalize()
+    return padded_data
 
 def encrypt(username, password, sharedKey):
     data = username + ":" + password
