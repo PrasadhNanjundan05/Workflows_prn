@@ -29,7 +29,7 @@ def pad_data(data, block_size):
     return padded_data
 
 def encrypt(username, password, shared_key):
-    data = f"{username}:{password}"
+    data = {username}":"{password}
 
     # Generate Initialization Vector (IV)
     iv = b'\x00' * 16  # For simplicity, all zeros IV is used
