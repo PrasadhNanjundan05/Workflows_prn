@@ -20,7 +20,7 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-key = os.urandom(32)
+key = os.urandom(24)
 
 context["secret_key"] = base64.b64encode(key).decode('utf-8')
 
