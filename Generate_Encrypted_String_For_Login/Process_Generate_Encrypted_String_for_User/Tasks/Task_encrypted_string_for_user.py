@@ -28,7 +28,7 @@ def encrypt(username, password, shared_key):
     iv = get_random_bytes(16)
     
     cipher = AES.new(shared_key.encode(), AES.MODE_CBC, iv)
-    encrypted_bytes = cipher.encrypt(pad(data.encode('utf-8'), AES.block_size))
+    encrypted_bytes = cipher.encrypt(pad(data.encode('utf-8'), 16))
     
     return b64encode(iv + encrypted_bytes).decode('utf-8')
 
