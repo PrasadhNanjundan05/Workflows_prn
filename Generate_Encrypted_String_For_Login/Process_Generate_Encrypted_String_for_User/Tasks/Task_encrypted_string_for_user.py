@@ -49,8 +49,7 @@ try:
 except Exception as e:
     print(e)
 
-context["TOKEN"] = context.get("TOKEN")
 ret = MSA_API.process_content('ENDED', 'Task OK', context, True)
 util.log_to_process_file(service_id, str(ret), process_id)
-print(ret)
+
 
