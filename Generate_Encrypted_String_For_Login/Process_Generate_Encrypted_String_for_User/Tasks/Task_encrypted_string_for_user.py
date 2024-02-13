@@ -24,7 +24,7 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-ef pad(data):
+def pad(data):
     length = 16 - (len(data) % 16)
     return data + (chr(length) * length).encode()
 
