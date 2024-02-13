@@ -7,10 +7,11 @@ if not sys.warnoptions:
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk import util
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
 import base64
 import hashlib
+from cryptography.hazmat.primitives import padding
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
 
 
 dev_var = Variables()
@@ -22,6 +23,11 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
+def pad_data(data, block_size):
+    padder = padding.PKCS7(block_size * 8).padder()
+    padded_data = padder.update(data) + padder.finalize()
+    return padded_data
+
 def encrypt(username, password, shared_key):
     data = f"{username}:{password}".encode("utf-8")
 
@@ -31,14 +37,16 @@ def encrypt(username, password, shared_key):
     # Ensure the shared key is 32 bytes long (256 bits) for AES-256
     secret_key = base64.b64decode(shared_key)
 
-    # Create AES cipher object in CBC mode
-    cipher = AES.new(secret_key, AES.MODE_CBC, iv)
+    # Create Cipher instance
+    cipher = Cipher(algorithms.AES(secret_key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
 
-    # Pad the data to a multiple of block size using PKCS7 padding
-    padded_data = pad(data, AES.block_size)
+    # Pad the data using PKCS7 padding
+    padded_data = pad_data(data, algorithms.AES.block_size)
 
     # Encrypt the padded data
-    encrypted_bytes = cipher.encrypt(padded_data)
+    encrypted_bytes = encryptor.update(padded_data) + encryptor.finalize()
+
 
     # Base64 encode the encrypted data
     return base64.b64encode(encrypted_bytes).decode("utf-8")
