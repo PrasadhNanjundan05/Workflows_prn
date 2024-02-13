@@ -8,10 +8,9 @@ from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk import util
 import base64
-import hashlib
-from cryptography.hazmat.primitives import padding
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.backends import default_backend
+from hashlib import sha256
+from hmac import HMAC
+from os import urandom
 
 
 dev_var = Variables()
@@ -23,33 +22,26 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-def pad_data(data, block_size):
-    padder = padding.PKCS7(block_size * 8).padder()
-    padded_data = padder.update(data) + padder.finalize()
-    return padded_data
+def pad(data):
+    length = 16 - (len(data) % 16)
+    return data + (chr(length) * length).encode()
 
-def encrypt(username, password, shared_key):
-    data = f"{username}:{password}"
-
+def encrypt(username, password, sharedKey):
+    data = username + ":" + password
+    
     # Generate Initialization Vector (IV)
-    iv = b'\x00' * 16  # For simplicity, all zeros IV is used
-
-    # Ensure the shared key is 32 bytes long (256 bits) for AES-256
-    secret_key = base64.b64decode(shared_key)
-
-    # Create Cipher instance
-    cipher = Cipher(algorithms.AES(secret_key), modes.CBC(iv), backend=default_backend())
-    encryptor = cipher.encryptor()
-
-    # Pad the data using PKCS7 padding
-    padded_data = pad_data(data, 16)
-
-    # Encrypt the padded data
-    encrypted_bytes = encryptor.update(padded_data) + encryptor.finalize()
-
-
-    # Base64 encode the encrypted data
-    return base64.b64encode(encrypted_bytes).decode("utf-8")
+    iv = urandom(16)  # Random IV
+    
+    # Derive key from sharedKey using HMAC
+    key = HMAC(sharedKey.encode('utf-8'), iv, sha256).digest()
+    
+    # Encrypt the data
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    encrypted_data = cipher.encrypt(pad(data.encode('utf-8')))
+    
+    # Combine IV and encrypted data and Base64 encode
+    encrypted_bytes = iv + encrypted_data
+    return base64.b64encode(encrypted_bytes).decode('utf-8')
 
 
 
