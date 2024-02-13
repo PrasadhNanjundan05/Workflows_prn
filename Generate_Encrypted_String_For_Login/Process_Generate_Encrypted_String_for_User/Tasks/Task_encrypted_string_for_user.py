@@ -11,7 +11,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from Crypto.Random import get_random_bytes
 import base64
 
 
@@ -28,7 +27,7 @@ def encrypt(username, password, shared_key):
     data = f"{username}:{password}".encode("utf-8")
 
     # Generate Initialization Vector (IV)
-    iv = get_random_bytes(AES.block_size)
+    iv = b'\x00' * 16  # For simplicity, all zeros IV is used
 
     # Ensure the shared key is 32 bytes long (256 bits) for AES-256
     shared_key = hashlib.sha256(shared_key.encode()).digest()
