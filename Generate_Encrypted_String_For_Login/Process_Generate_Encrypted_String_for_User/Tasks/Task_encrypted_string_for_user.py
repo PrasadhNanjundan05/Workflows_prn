@@ -11,6 +11,8 @@ import base64
 from hashlib import sha256
 from hmac import HMAC
 from os import urandom
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
 
 
 dev_var = Variables()
@@ -22,7 +24,7 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-def pad(data):
+ef pad(data):
     length = 16 - (len(data) % 16)
     return data + (chr(length) * length).encode()
 
@@ -36,8 +38,9 @@ def encrypt(username, password, sharedKey):
     key = HMAC(sharedKey.encode('utf-8'), iv, sha256).digest()
     
     # Encrypt the data
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    encrypted_data = cipher.encrypt(pad(data.encode('utf-8')))
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    encrypted_data = encryptor.update(pad(data.encode('utf-8'))) + encryptor.finalize()
     
     # Combine IV and encrypted data and Base64 encode
     encrypted_bytes = iv + encrypted_data
