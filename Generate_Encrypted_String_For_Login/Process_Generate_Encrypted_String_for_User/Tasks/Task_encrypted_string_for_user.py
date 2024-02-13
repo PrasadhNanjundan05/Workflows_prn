@@ -25,28 +25,19 @@ context = Variables.task_call(dev_var)
 service_id = context['SERVICEINSTANCEID']
 process_id = context['PROCESSINSTANCEID']
 
-def pad(data):
-    padder = padding.PKCS7(128).padder()
-    padded_data = padder.update(data) + padder.finalize()
-    return padded_data
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from base64 import b64encode
+from Crypto.Random import get_random_bytes
 
-def encrypt(username, password, sharedKey):
+def encrypt(username, password, shared_key):
     data = username + ":" + password
+    iv = get_random_bytes(16)
     
-    # Generate Initialization Vector (IV)
-    iv = urandom(16)  # Random IV
+    cipher = AES.new(shared_key.encode(), AES.MODE_CBC, iv)
+    encrypted_bytes = cipher.encrypt(pad(data.encode('utf-8'), AES.block_size))
     
-    # Derive key from sharedKey using HMAC
-    key = HMAC(sharedKey.encode('utf-8'), iv, sha256).digest()
-    
-    # Encrypt the data
-    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
-    encryptor = cipher.encryptor()
-    encrypted_data = encryptor.update(pad(data.encode('utf-8'))) + encryptor.finalize()
-    
-    # Combine IV and encrypted data and Base64 encode
-    encrypted_bytes = iv + encrypted_data
-    return base64.b64encode(encrypted_bytes).decode('utf-8')
+    return b64encode(iv + encrypted_bytes).decode('utf-8')
 
 
 
