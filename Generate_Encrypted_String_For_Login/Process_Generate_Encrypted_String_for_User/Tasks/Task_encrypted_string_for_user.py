@@ -7,11 +7,10 @@ if not sys.warnoptions:
 from msa_sdk.variables import Variables
 from msa_sdk.msa_api import MSA_API
 from msa_sdk import util
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization, hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
 import base64
+import hashlib
 
 
 dev_var = Variables()
@@ -32,12 +31,14 @@ def encrypt(username, password, shared_key):
     # Ensure the shared key is 32 bytes long (256 bits) for AES-256
     secret_key = base64.b64decode(shared_key)
 
-    # Create Cipher instance
-    cipher = Cipher(algorithms.AES(secret_key), modes.CBC(iv), backend=default_backend())
-    encryptor = cipher.encryptor()
+    # Create AES cipher object in CBC mode
+    cipher = AES.new(secret_key, AES.MODE_CBC, iv)
 
-    # Encrypt the data
-    encrypted_bytes = encryptor.update(data) + encryptor.finalize()
+    # Pad the data to a multiple of block size using PKCS7 padding
+    padded_data = pad(data, AES.block_size)
+
+    # Encrypt the padded data
+    encrypted_bytes = cipher.encrypt(padded_data)
 
     # Base64 encode the encrypted data
     return base64.b64encode(encrypted_bytes).decode("utf-8")
