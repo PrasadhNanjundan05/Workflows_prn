@@ -20,26 +20,22 @@ process_id = context['PROCESSINSTANCEID']
 
 import base64
 from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad
 
 def encrypt(username, password, shared_key):
-    data = f"{username}:{password}".encode("utf-8")
-
-    # Generate Initialization Vector (IV)
-    iv = get_random_bytes(16)
-
-    # Convert the shared key to bytes
-    secret_key = shared_key.encode("utf-8")
-
-    # Create Cipher instance
+    data = f"{username}:{password}"
+    iv = b'\x00' * 16  # Initialize IV (16 bytes of zeros)
+    secret_key = shared_key.encode('utf-8')
+    
+    # Create AES cipher object
     cipher = AES.new(secret_key, AES.MODE_CBC, iv)
-
+    
     # Encrypt the data
-    encrypted_bytes = cipher.encrypt(data)
-
-    # Base64 encode the encrypted data
-    encrypted_text = base64.b64encode(iv + encrypted_bytes).decode("utf-8")
-    return encrypted_text
+    encrypted_bytes = cipher.encrypt(pad(data.encode('utf-8'), AES.block_size))
+    
+    # Encode the encrypted bytes to base64
+    encrypted_data = base64.b64encode(encrypted_bytes).decode('utf-8')
+    return encrypted_data
 
 
 try:
